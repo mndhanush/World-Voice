@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WorldVoice - Independent Language Immersion & Cultural Institute</title>
+  <meta name="description" content="WorldVoice: An Independent Language Immersion & Cultural Institute offering A1-C2 pathways and cultural workshops.">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <script>
+    tailwind.config = { 
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            'teal-primary': '#0F766E', 
+            'orange-secondary': '#EA580C',
+            'light-bg': '#FFFFFF',
+            'light-surface': '#F8FAFC',
+            'dark-bg': '#0F172A',
+            'dark-surface': '#1E293B'
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    [dir="rtl"] { direction: rtl; }
+    
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .animate-fade-in { animation: fadeInUp 0.8s ease-out; }
+
+    .hide-scroll::-webkit-scrollbar { display: none; }
+    .hide-scroll { -ms-overflow-style: none; scrollbar-width: none; }
+  </style>
+</head>
+<body class="font-sans antialiased transition-colors duration-300 bg-light-bg dark:bg-dark-bg text-gray-800 dark:text-gray-100 flex flex-col min-h-screen">
+
+  <!-- FLOATING NAVBAR -->
+  <div class="fixed top-4 left-0 right-0 z-50 px-4 sm:px-6 lg:px-8 flex justify-center pointer-events-none">
+    <nav class="w-full max-w-[1600px] bg-light-bg/90 dark:bg-dark-surface/90 backdrop-blur-lg border border-gray-200 dark:border-gray-700 rounded-2xl lg:rounded-full shadow-2xl transition-colors duration-300 pointer-events-auto relative">
+      <div class="flex justify-between items-center h-[80px] px-4 xl:px-8">
+
+        <!-- Logo -->
+        <div class="flex-shrink-0 pr-2 xl:pr-4">
+          <a href="index.html" class="flex items-center gap-3">
+            <div class="flex flex-col">
+              <span class="text-lg xl:text-2xl font-bold tracking-widest text-teal-primary dark:text-white uppercase">World<span class="text-orange-secondary">Voice</span></span>
+            </div>
+          </a>
+        </div>
+
+        <!-- Desktop Menu -->
+        <div class="hidden lg:flex items-center justify-center flex-1">
+          <div class="flex items-center gap-0.5 xl:gap-1">
+
+            <!-- Home Dropdown -->
+            <div class="relative group h-[80px] flex items-center">
+              <a href="index.html" class="text-[9px] xl:text-[10px] uppercase tracking-[0.15em] font-bold text-teal-primary dark:text-teal-primary transition-colors flex items-center relative px-1.5 xl:px-2 py-2 rounded-full bg-gray-50 dark:bg-gray-800 whitespace-nowrap">
+                <span>Home</span>
+                <i class="fas fa-chevron-down text-[8px] ms-1.5 transition-transform duration-300 group-hover:rotate-180"></i>
+              </a>
+              <div class="absolute top-[70px] start-0 w-48 bg-light-bg dark:bg-dark-surface border border-gray-200 dark:border-gray-700 shadow-2xl rounded-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 overflow-hidden">
+                <div class="py-2 flex flex-col">
+                  <!-- index.html is Home 1 -->
+                  <a href="index.html" class="px-6 py-3 text-xs font-bold text-teal-primary dark:text-teal-primary bg-gray-50 dark:bg-gray-800 transition-colors">Home 1</a>
+                  <a href="home2.html" class="px-6 py-3 text-xs font-bold text-gray-800 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">Home 2</a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Standard Links -->
+            <a href="about.html" class="text-[9px] xl:text-[10px] uppercase tracking-[0.15em] font-bold text-gray-800 dark:text-gray-200 hover:text-teal-primary dark:hover:text-teal-primary transition-colors whitespace-nowrap px-1.5 xl:px-2 py-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800">About</a>
+            <a href="student-portal.html" class="text-[9px] xl:text-[10px] uppercase tracking-[0.15em] font-bold text-gray-800 dark:text-gray-200 hover:text-teal-primary dark:hover:text-teal-primary transition-colors whitespace-nowrap px-1.5 xl:px-2 py-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800">Student Portal</a>
+            <a href="curriculum.html" class="text-[9px] xl:text-[10px] uppercase tracking-[0.15em] font-bold text-gray-800 dark:text-gray-200 hover:text-teal-primary dark:hover:text-teal-primary transition-colors whitespace-nowrap px-1.5 xl:px-2 py-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800">Curriculum</a>
+            <a href="workshops.html" class="text-[9px] xl:text-[10px] uppercase tracking-[0.15em] font-bold text-gray-800 dark:text-gray-200 hover:text-teal-primary dark:hover:text-teal-primary transition-colors whitespace-nowrap px-1.5 xl:px-2 py-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800">Workshops</a>
+            <a href="instructors.html" class="text-[9px] xl:text-[10px] uppercase tracking-[0.15em] font-bold text-gray-800 dark:text-gray-200 hover:text-teal-primary dark:hover:text-teal-primary transition-colors whitespace-nowrap px-1.5 xl:px-2 py-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800">Instructors</a>
+            <a href="pricing.html" class="text-[9px] xl:text-[10px] uppercase tracking-[0.15em] font-bold text-gray-800 dark:text-gray-200 hover:text-teal-primary dark:hover:text-teal-primary transition-colors whitespace-nowrap px-1.5 xl:px-2 py-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800">Pricing</a>
+            <a href="faq.html" class="text-[9px] xl:text-[10px] uppercase tracking-[0.15em] font-bold text-gray-800 dark:text-gray-200 hover:text-teal-primary dark:hover:text-teal-primary transition-colors whitespace-nowrap px-1.5 xl:px-2 py-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800">FAQ</a>
+            <a href="contact.html" class="text-[9px] xl:text-[10px] uppercase tracking-[0.15em] font-bold text-gray-800 dark:text-gray-200 hover:text-teal-primary dark:hover:text-teal-primary transition-colors whitespace-nowrap px-1.5 xl:px-2 py-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800">Contact</a>
+
+            <!-- Dashboard Dropdown -->
+            <div class="relative group h-[80px] flex items-center">
+              <a href="dashboard.html" class="text-[9px] xl:text-[10px] uppercase tracking-[0.15em] font-bold text-gray-800 dark:text-gray-200 hover:text-teal-primary dark:hover:text-teal-primary transition-colors flex items-center relative px-1.5 xl:px-2 py-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 whitespace-nowrap">
+                <span>Dashboard</span>
+                <i class="fas fa-chevron-down text-[8px] ms-1.5 transition-transform duration-300 group-hover:rotate-180"></i>
+              </a>
+              <div class="absolute top-[70px] start-0 w-48 bg-light-bg dark:bg-dark-surface border border-gray-200 dark:border-gray-700 shadow-2xl rounded-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 overflow-hidden">
+                <div class="py-2 flex flex-col">
+                  <a href="user-dashboard.html" class="px-6 py-3 text-xs font-bold text-gray-800 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">User</a>
+                  <a href="admin-dashboard.html" class="px-6 py-3 text-xs font-bold text-gray-800 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">Admin</a>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Desktop Actions & Toggles -->
+        <div class="hidden lg:flex items-center gap-1.5 xl:gap-3 flex-shrink-0">
+          <a href="login.html" class="border border-teal-primary text-teal-primary dark:text-white dark:border-gray-600 hover:bg-teal-primary hover:text-white dark:hover:bg-teal-primary px-4 xl:px-5 py-2 xl:py-2.5 rounded-full text-[9px] xl:text-[10px] uppercase tracking-wider font-bold transition-all duration-300">Login</a>
+          <a href="register.html" class="bg-teal-primary text-white hover:bg-orange-secondary dark:hover:bg-orange-secondary px-4 xl:px-5 py-2 xl:py-2.5 rounded-full text-[9px] xl:text-[10px] uppercase tracking-wider font-bold transition-all duration-300">
+            Register
+          </a>
+
+          <div class="h-6 w-px bg-gray-300 dark:bg-gray-700 mx-1"></div>
+
+          <!-- Theme Toggle -->
+          <button id="theme-toggle" class="relative w-[56px] xl:w-[64px] h-[26px] xl:h-[30px] flex items-center bg-gray-200 dark:bg-gray-700 rounded-full p-1 transition-colors duration-300 focus:outline-none border border-gray-300 dark:border-gray-600 overflow-hidden" title="Toggle Theme">
+            <span class="text-[7px] xl:text-[8px] font-bold text-gray-500 absolute end-2.5 dark:opacity-0 transition-opacity duration-300 tracking-wider">LGT</span>
+            <span class="text-[7px] xl:text-[8px] font-bold text-gray-300 absolute start-2.5 opacity-0 dark:opacity-100 transition-opacity duration-300 tracking-wider">DRK</span>
+            
+            <div class="w-[18px] xl:w-[20px] h-[18px] xl:h-[20px] bg-white dark:bg-dark-bg border border-gray-200 dark:border-gray-600 rounded-full shadow-sm transform transition-transform duration-300 flex items-center justify-center rtl:dark:-translate-x-[30px] xl:rtl:dark:-translate-x-[34px] ltr:dark:translate-x-[30px] xl:ltr:dark:translate-x-[34px] dark:translate-x-[30px] xl:dark:translate-x-[34px] z-10">
+              <i class="fas fa-sun text-[8px] xl:text-[9px] text-orange-secondary dark:hidden block"></i>
+              <i class="fas fa-moon text-[8px] xl:text-[9px] text-teal-primary hidden dark:block"></i>
+            </div>
+          </button>
+          
+          <!-- RTL Toggle -->
+          <button id="rtl-toggle" class="text-[9px] xl:text-[10px] font-bold text-gray-500 hover:text-teal-primary transition-colors duration-300 px-2 py-1 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800" title="Toggle RTL">
+            RTL
+          </button>
+        </div>
+
+        <!-- Mobile Menu Button -->
+        <div class="lg:hidden flex items-center">
+          <button id="mobile-menu-button" class="text-gray-800 dark:text-gray-200 hover:text-teal-primary focus:outline-none transition duration-300 bg-gray-100 dark:bg-gray-800 p-2 rounded-full">
+            <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path id="menu-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+              <path id="close-icon" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+          </button>
+        </div>
+
+      </div>
+
+      <!-- Mobile Menu Dropdown -->
+      <div id="mobile-menu" class="hidden lg:hidden absolute top-[90px] left-0 right-0 bg-light-bg dark:bg-dark-surface border border-gray-200 dark:border-gray-700 shadow-2xl rounded-2xl transition-colors duration-300 overflow-hidden">
+        <div class="px-6 pt-4 pb-8 flex flex-col gap-0 max-h-[calc(100vh-120px)] overflow-y-auto hide-scroll">
+
+          <!-- Mobile Home Dropdown -->
+          <div class="border-b border-gray-200 dark:border-gray-700 flex flex-col">
+            <div class="w-full flex items-center justify-between py-4">
+              <a href="index.html" class="text-xs uppercase tracking-widest font-bold text-teal-primary dark:text-teal-primary transition duration-300">Home</a>
+              <button id="mobile-home-dropdown" class="p-2 -mr-2 text-gray-500 dark:text-gray-400 focus:outline-none">
+                <i class="fas fa-plus text-xs" id="mobile-home-icon"></i>
+              </button>
+            </div>
+            <div id="mobile-home-menu" class="hidden pb-4 flex flex-col gap-3 ps-4 border-s-2 border-gray-300 dark:border-gray-600 ms-2">
+              <!-- index.html is Home 1 -->
+              <a href="index.html" class="block text-xs font-bold text-teal-primary dark:text-teal-primary transition duration-300 uppercase tracking-wider">Home 1</a>
+              <a href="home2.html" class="block text-xs font-bold text-gray-600 dark:text-gray-400 hover:text-teal-primary dark:hover:text-teal-primary transition duration-300 uppercase tracking-wider">Home 2</a>
+            </div>
+          </div>
+
+          <!-- Mobile Links -->
+          <a href="about.html" class="block py-4 border-b border-gray-200 dark:border-gray-700 text-gray-800 dark:text-gray-200 hover:text-teal-primary transition duration-300 text-xs uppercase tracking-widest font-bold">About</a>
+          <a href="student-portal.html" class="block py-4 border-b border-gray-200 dark:border-gray-700 text-gray-800 dark:text-gray-200 hover:text-teal-primary transition duration-300 text-xs uppercase tracking-widest font-bold">Student Portal</a>
+          <a href="curriculum.html" class="block py-4 border-b border-gray-200 dark:border-gray-700 text-gray-800 dark:text-gray-200 hover:text-teal-primary transition duration-300 text-xs uppercase tracking-widest font-bold">Curriculum</a>
+          <a href="workshops.html" class="block py-4 border-b border-gray-200 dark:border-gray-700 text-gray-800 dark:text-gray-200 hover:text-teal-primary transition duration-300 text-xs uppercase tracking-widest font-bold">Workshops</a>
+          <a href="instructors.html" class="block py-4 border-b border-gray-200 dark:border-gray-700 text-gray-800 dark:text-gray-200 hover:text-teal-primary transition duration-300 text-xs uppercase tracking-widest font-bold">Instructors</a>
+          <a href="pricing.html" class="block py-4 border-b border-gray-200 dark:border-gray-700 text-gray-800 dark:text-gray-200 hover:text-teal-primary transition duration-300 text-xs uppercase tracking-widest font-bold">Pricing</a>
+          <a href="faq.html" class="block py-4 border-b border-gray-200 dark:border-gray-700 text-gray-800 dark:text-gray-200 hover:text-teal-primary transition duration-300 text-xs uppercase tracking-widest font-bold">FAQ</a>
+          <a href="contact.html" class="block py-4 border-b border-gray-200 dark:border-gray-700 text-gray-800 dark:text-gray-200 hover:text-teal-primary transition duration-300 text-xs uppercase tracking-widest font-bold">Contact</a>
+
+          <!-- Mobile Dashboard Dropdown -->
+          <div class="border-b border-gray-200 dark:border-gray-700 flex flex-col">
+            <div class="w-full flex items-center justify-between py-4">
+              <a href="dashboard.html" class="text-xs uppercase tracking-widest font-bold text-gray-800 dark:text-gray-200 hover:text-teal-primary dark:hover:text-teal-primary transition duration-300">Dashboard</a>
+              <button id="mobile-dash-dropdown" class="p-2 -mr-2 text-gray-500 dark:text-gray-400 focus:outline-none">
+                <i class="fas fa-plus text-xs" id="mobile-dash-icon"></i>
+              </button>
+            </div>
+            <div id="mobile-dash-menu" class="hidden pb-4 flex flex-col gap-3 ps-4 border-s-2 border-gray-300 dark:border-gray-600 ms-2">
+              <a href="user-dashboard.html" class="block text-xs font-bold text-gray-600 dark:text-gray-400 hover:text-teal-primary dark:hover:text-teal-primary transition duration-300 uppercase tracking-wider">User</a>
+              <a href="admin-dashboard.html" class="block text-xs font-bold text-gray-600 dark:text-gray-400 hover:text-teal-primary dark:hover:text-teal-primary transition duration-300 uppercase tracking-wider">Admin</a>
+            </div>
+          </div>
+
+          <!-- Mobile Auth & Toggles -->
+          <div class="pt-6 flex flex-col gap-4">
+            <a href="login.html" class="flex items-center justify-center w-full bg-transparent border-2 border-gray-800 dark:border-gray-200 text-gray-800 dark:text-gray-200 hover:border-teal-primary hover:text-teal-primary dark:hover:border-teal-primary dark:hover:text-teal-primary px-4 py-3 rounded-full font-bold uppercase tracking-widest text-xs transition duration-300">
+              Login
+            </a>
+            <a href="register.html" class="flex items-center justify-center w-full bg-teal-primary text-white hover:bg-orange-secondary px-4 py-3 rounded-full font-bold uppercase tracking-widest text-xs transition duration-300">
+              Register
+            </a>
+            
+            <div class="flex justify-between items-center pt-6 pb-2 border-t border-gray-200 dark:border-gray-700 mt-2">
+              <button id="mobile-theme-toggle" class="bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-full px-4 py-2 transition-colors flex items-center text-xs font-bold uppercase tracking-widest text-gray-800 dark:text-gray-200">
+                <span class="dark:hidden flex items-center"><i class="fas fa-sun me-2 text-orange-secondary"></i> Light</span>
+                <span class="hidden dark:flex items-center"><i class="fas fa-moon me-2 text-teal-primary"></i> Dark</span>
+              </button>
+              <button id="mobile-rtl-toggle" class="text-gray-500 dark:text-gray-400 hover:text-teal-primary dark:hover:text-teal-primary transition-colors flex items-center text-xs font-bold uppercase tracking-widest">
+                <i class="fas fa-language me-2 text-lg"></i> RTL
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </div>
+
+  <main class="flex-grow flex flex-col pt-0">
+    
+    <!-- SECTION 1: Hero -->
+    <section class="relative flex-grow-0 flex items-center justify-center overflow-hidden h-screen min-h-[650px] bg-slate-950 border-b border-gray-800 transition-colors duration-300 pt-[100px]">
+      <!-- Background Image: highly visible and fit to the viewport container -->
+      <div class="absolute inset-0 bg-[url('assets/hero-bg.jpg')] bg-cover bg-center opacity-85 z-0"></div>
+      <!-- Dark Tint Overlay to ensure text readability -->
+      <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/60 to-slate-950/40 z-0"></div>
+
+      <div class="max-w-7xl mx-auto px-4 relative z-20 w-full text-center">
+        <div class="animate-fade-in max-w-4xl mx-auto">
+          <p class="text-teal-400 uppercase tracking-[0.3em] text-sm font-bold mb-6">WorldVoice</p>
+          <h1 class="text-5xl md:text-7xl font-bold leading-tight tracking-tight text-white mb-8">
+            INDEPENDENT LANGUAGE <span class="text-orange-secondary">IMMERSION</span> <br/>
+            & CULTURAL INSTITUTE.
+          </h1>
+          <p class="text-lg text-gray-200 leading-relaxed font-medium mb-10 max-w-2xl mx-auto">
+            Experience a clean, multilingual global site layout mapping out curriculum pathways and fostering global fluency.
+          </p>
+          <div class="flex flex-wrap gap-6 justify-center">
+            <a href="register.html" class="px-8 py-4 bg-teal-primary text-white hover:bg-orange-secondary font-bold uppercase tracking-widest text-xs transition-colors duration-300 shadow-lg shadow-teal-primary/30 rounded-full">
+              Start Learning
+            </a>
+            <a href="curriculum.html" class="px-8 py-4 border-2 border-orange-secondary text-orange-secondary hover:bg-orange-secondary hover:text-white font-bold uppercase tracking-widest text-xs transition-colors duration-300 bg-slate-950/50 backdrop-blur-sm rounded-full">
+              View Curriculum
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2: Curriculum Pathways -->
+    <section class="py-24 bg-light-bg dark:bg-dark-surface border-b border-gray-200 dark:border-gray-800 transition-colors duration-300">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white uppercase tracking-tight mb-4">
+            Curriculum <span class="text-teal-primary">Pathways</span>
+          </h2>
+          <div class="w-24 h-1 bg-orange-secondary mx-auto rounded-full"></div>
+          <p class="mt-6 text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">Structured progression mapping out curriculum pathways (A1 through C2 levels) to guide your language mastery journey.</p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div class="bg-light-surface dark:bg-dark-bg border border-gray-200 dark:border-gray-700 hover:border-teal-primary dark:hover:border-teal-primary p-8 transition-colors duration-300 group shadow-lg dark:shadow-none rounded-3xl">
+            <i class="fas fa-seedling text-4xl text-teal-primary mb-6 group-hover:scale-110 transition-transform"></i>
+            <h3 class="text-xl font-bold text-gray-900 dark:text-white uppercase tracking-wide mb-4">A1 - A2 (Beginner)</h3>
+            <p class="text-gray-600 dark:text-gray-400 mb-6 text-sm leading-relaxed font-medium">
+              Build foundational vocabulary, essential grammar, and basic conversational skills necessary for daily cultural interactions.
+            </p>
+          </div>
+          <div class="bg-orange-secondary/5 dark:bg-orange-secondary/10 border-2 border-orange-secondary p-8 transition-colors duration-300 group shadow-xl shadow-orange-secondary/10 dark:shadow-[0_0_30px_rgba(234,88,12,0.1)] relative rounded-3xl overflow-hidden">
+            <div class="absolute top-0 right-0 bg-orange-secondary text-white text-[10px] font-bold uppercase tracking-widest py-1 px-4 rounded-bl-xl">Popular</div>
+            <i class="fas fa-comments text-4xl text-orange-secondary mb-6 group-hover:scale-110 transition-transform mt-2"></i>
+            <h3 class="text-xl font-bold text-gray-900 dark:text-white uppercase tracking-wide mb-4">B1 - B2 (Intermediate)</h3>
+            <p class="text-gray-700 dark:text-gray-300 mb-6 text-sm leading-relaxed font-medium">
+              Achieve conversational fluency, understand complex texts, and engage actively in our interactive cultural workshops.
+            </p>
+          </div>
+          <div class="bg-light-surface dark:bg-dark-bg border border-gray-200 dark:border-gray-700 hover:border-teal-primary dark:hover:border-teal-primary p-8 transition-colors duration-300 group shadow-lg dark:shadow-none rounded-3xl">
+            <i class="fas fa-globe text-4xl text-teal-primary mb-6 group-hover:scale-110 transition-transform"></i>
+            <h3 class="text-xl font-bold text-gray-900 dark:text-white uppercase tracking-wide mb-4">C1 - C2 (Advanced)</h3>
+            <p class="text-gray-600 dark:text-gray-400 mb-6 text-sm leading-relaxed font-medium">
+              Master subtleties, idiomatic expressions, and professional-level proficiency equivalent to a native speaker.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 3: Dashboard Capabilities -->
+    <section class="py-24 bg-light-surface dark:bg-dark-bg border-b border-gray-200 dark:border-gray-800 relative transition-colors duration-300">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col md:flex-row justify-between items-end mb-12">
+          <div>
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white uppercase tracking-tight mb-4">
+              Student <span class="text-orange-secondary">Dashboard</span>
+            </h2>
+            <div class="w-24 h-1 bg-teal-primary rounded-full"></div>
+          </div>
+          <a href="student-portal.html" class="text-teal-primary uppercase text-xs tracking-widest font-bold hover:text-orange-secondary mt-6 md:mt-0 border-b border-teal-primary hover:border-orange-secondary pb-1 transition-colors">Access Portal</a>
+        </div>
+
+        <div class="bg-light-bg dark:bg-dark-surface border border-gray-200 dark:border-gray-700 rounded-3xl p-8 shadow-xl">
+          <p class="text-gray-600 dark:text-gray-300 mb-8 font-medium">Designed for language students to seamlessly manage their academic journey.</p>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="p-6 border border-gray-100 dark:border-gray-700 rounded-2xl hover:border-teal-primary dark:hover:border-teal-primary transition-colors bg-white dark:bg-dark-bg">
+              <i class="fas fa-calendar-check text-2xl text-teal-primary mb-4"></i>
+              <h4 class="font-bold text-gray-900 dark:text-white uppercase text-sm mb-2">Track Attendance</h4>
+              <p class="text-xs text-gray-500 dark:text-gray-400">Monitor your class attendance, view upcoming lessons, and never miss a session with our integrated calendar.</p>
+            </div>
+            <div class="p-6 border border-gray-100 dark:border-gray-700 rounded-2xl hover:border-orange-secondary dark:hover:border-orange-secondary transition-colors bg-white dark:bg-dark-bg">
+              <i class="fas fa-headphones text-2xl text-orange-secondary mb-4"></i>
+              <h4 class="font-bold text-gray-900 dark:text-white uppercase text-sm mb-2">Practice Files</h4>
+              <p class="text-xs text-gray-500 dark:text-gray-400">Access high-quality audio files, interactive worksheets, and homework assignments curated by your instructors.</p>
+            </div>
+            <div class="p-6 border border-gray-100 dark:border-gray-700 rounded-2xl hover:border-teal-primary dark:hover:border-teal-primary transition-colors bg-white dark:bg-dark-bg">
+              <i class="fas fa-clipboard-list text-2xl text-teal-primary mb-4"></i>
+              <h4 class="font-bold text-gray-900 dark:text-white uppercase text-sm mb-2">Placement Exams</h4>
+              <p class="text-xs text-gray-500 dark:text-gray-400">Take our comprehensive adaptive placement exams to accurately measure your progress and unlock new levels.</p>
+            </div>
+            <div class="p-6 border border-gray-100 dark:border-gray-700 rounded-2xl hover:border-orange-secondary dark:hover:border-orange-secondary transition-colors bg-white dark:bg-dark-bg">
+              <i class="fas fa-book text-2xl text-orange-secondary mb-4"></i>
+              <h4 class="font-bold text-gray-900 dark:text-white uppercase text-sm mb-2">Grade Books</h4>
+              <p class="text-xs text-gray-500 dark:text-gray-400">Receive detailed feedback, view your quiz scores, and track your language proficiency gains in real-time.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: Cultural Workshops -->
+    <section class="py-24 bg-light-bg dark:bg-dark-surface border-b border-gray-200 dark:border-gray-800 relative overflow-hidden transition-colors duration-300">
+      <div class="absolute top-0 right-0 w-96 h-96 border-2 border-teal-primary/20 dark:border-teal-primary/10 rounded-full translate-x-1/2 -translate-y-1/2"></div>
+      
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="grid lg:grid-cols-2 gap-16 items-center">
+          <div class="border-2 border-teal-primary p-2 shadow-2xl shadow-teal-primary/10 bg-light-bg dark:bg-dark-bg rounded-3xl">
+            <div class="aspect-square bg-gray-200 dark:bg-gray-800 flex items-center justify-center overflow-hidden rounded-2xl">
+              <img src="assets/workshop.jpg" alt="Cultural Workshop" class="w-full h-full object-cover hover:scale-105 transition-transform duration-700">
+            </div>
+          </div>
+          
+          <div>
+            <p class="text-teal-primary uppercase tracking-[0.2em] text-xs font-bold mb-4">Beyond Language</p>
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white uppercase tracking-tight mb-6">
+              Cultural <span class="text-orange-secondary">Workshops</span>
+            </h2>
+            <p class="text-gray-600 dark:text-gray-300 mb-8 text-base leading-relaxed font-medium">
+              Immerse yourself completely in the culture. We offer beautifully curated interactive cultural workshops—ranging from culinary arts to history seminars—designed to give you a holistic understanding of the language's native environment.
+            </p>
+            
+            <ul class="space-y-5 mb-10">
+              <li class="flex items-center text-gray-800 dark:text-gray-200 text-sm font-bold uppercase tracking-wide">
+                <i class="fas fa-check text-orange-secondary w-8 text-lg"></i> Culinary & Gastronomy Sessions
+              </li>
+              <li class="flex items-center text-gray-800 dark:text-gray-200 text-sm font-bold uppercase tracking-wide">
+                <i class="fas fa-check text-teal-primary w-8 text-lg"></i> Art History & Regional Customs
+              </li>
+              <li class="flex items-center text-gray-800 dark:text-gray-200 text-sm font-bold uppercase tracking-wide">
+                <i class="fas fa-check text-orange-secondary w-8 text-lg"></i> Interactive Cultural Timelines
+              </li>
+            </ul>
+
+            <a href="workshops.html" class="inline-flex items-center px-8 py-4 bg-orange-secondary text-white hover:bg-teal-primary font-bold uppercase tracking-widest text-xs transition-colors duration-300 shadow-lg rounded-full">
+              Explore Workshops <i class="fas fa-arrow-right ms-2"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 5: Native Speaker Instructors -->
+    <section class="py-24 bg-light-surface dark:bg-dark-bg border-b border-gray-200 dark:border-gray-800 transition-colors duration-300">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white uppercase tracking-tight mb-4">
+          Meet The <span class="text-teal-primary">Instructors</span>
+        </h2>
+        <div class="w-24 h-1 bg-orange-secondary mx-auto mb-16 rounded-full"></div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <!-- Elena Rodriguez -->
+          <div class="flex flex-col items-center bg-white dark:bg-dark-surface border border-gray-100 dark:border-gray-800 rounded-2xl p-6 shadow-sm">
+            <div class="w-28 h-28 rounded-full overflow-hidden mb-4 border border-gray-200 dark:border-gray-700">
+              <img src="assets/instructor-elena.jpg" alt="Elena Rodriguez" class="w-full h-full object-cover object-center">
+            </div>
+            <h3 class="text-base font-bold text-gray-900 dark:text-white uppercase mb-1">Elena Rodriguez</h3>
+            <p class="text-orange-secondary dark:text-orange-400 text-xs font-bold uppercase tracking-wider mb-3">Spanish - C2 Level</p>
+            <p class="text-gray-500 dark:text-gray-400 text-xs text-center leading-relaxed">Elena brings over 10 years of experience teaching Castilian Spanish, specializing in advanced C2 literature, conversational immersion, and Spanish history.</p>
+          </div>
+
+          <!-- Marc Laurent -->
+          <div class="flex flex-col items-center bg-white dark:bg-dark-surface border border-gray-100 dark:border-gray-800 rounded-2xl p-6 shadow-sm">
+            <div class="w-28 h-28 rounded-full overflow-hidden mb-4 border border-gray-200 dark:border-gray-700">
+              <img src="assets/instructor-marc.jpg" alt="Marc Laurent" class="w-full h-full object-cover object-center">
+            </div>
+            <h3 class="text-base font-bold text-gray-900 dark:text-white uppercase mb-1">Marc Laurent</h3>
+            <p class="text-teal-primary dark:text-teal-400 text-xs font-bold uppercase tracking-wider mb-3">French - B2 Level</p>
+            <p class="text-gray-500 dark:text-gray-400 text-xs text-center leading-relaxed">Marc focuses on active communication and Parisian cultural nuances, helping intermediate students build confidence in both professional and social settings.</p>
+          </div>
+
+          <!-- Aiko Tanaka -->
+          <div class="flex flex-col items-center bg-white dark:bg-dark-surface border border-gray-100 dark:border-gray-800 rounded-2xl p-6 shadow-sm">
+            <div class="w-28 h-28 rounded-full overflow-hidden mb-4 border border-gray-200 dark:border-gray-700">
+              <img src="assets/instructor-aiko.jpg" alt="Aiko Tanaka" class="w-full h-full object-cover object-center">
+            </div>
+            <h3 class="text-base font-bold text-gray-900 dark:text-white uppercase mb-1">Aiko Tanaka</h3>
+            <p class="text-orange-secondary dark:text-orange-400 text-xs font-bold uppercase tracking-wider mb-3">Japanese - A1 Level</p>
+            <p class="text-gray-500 dark:text-gray-400 text-xs text-center leading-relaxed">Aiko makes learning Japanese fun and accessible for beginners, integrating traditional calligraphy, honorifics, and modern pop culture into her classes.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 6: Course Comparison & CTA -->
+    <section class="py-24 bg-light-bg dark:bg-dark-surface transition-colors duration-300">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div class="border-4 border-teal-primary dark:border-teal-primary p-12 relative overflow-hidden bg-light-surface dark:bg-dark-bg shadow-2xl rounded-3xl">
+          <div class="absolute inset-0 bg-teal-primary/5 dark:bg-teal-primary/10"></div>
+          <div class="relative z-10">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white uppercase tracking-tight mb-4">
+              Find Your <span class="text-orange-secondary">Perfect Course</span>
+            </h2>
+            <p class="text-gray-600 dark:text-gray-300 mb-8 max-w-xl mx-auto font-medium">
+              Explore our flexible learning pathways and choose the schedule that best fits your lifestyle and learning speed.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+              <a href="pricing.html" class="px-8 py-4 bg-teal-primary text-white hover:bg-orange-secondary font-bold uppercase tracking-widest text-xs transition-colors duration-300 rounded-full">
+                Compare Courses
+              </a>
+              <a href="student-portal.html" class="px-8 py-4 border-2 border-orange-secondary text-orange-secondary hover:bg-orange-secondary hover:text-white font-bold uppercase tracking-widest text-xs transition-colors duration-300 rounded-full bg-white dark:bg-transparent">
+                Placement Exam
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-gray-900 text-white pt-24 pb-12 mt-auto border-t-4 border-teal-primary">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+        
+        <!-- Column 1: Logo & Info -->
+        <div>
+          <h3 class="text-3xl font-bold tracking-widest uppercase mb-6 text-white">World<span class="text-orange-secondary">Voice</span></h3>
+          <p class="text-gray-400 mb-8 font-medium leading-relaxed text-sm">
+            An Independent Language Immersion & Cultural Institute focused on mapping out comprehensive curriculum pathways to global fluency.
+          </p>
+          <div class="flex gap-4">
+            <a href="#" class="w-10 h-10 border border-gray-700 text-gray-300 hover:border-teal-primary hover:text-teal-primary flex items-center justify-center transition-all duration-300 rounded-full bg-gray-800">
+              <i class="fab fa-facebook-f text-sm"></i>
+            </a>
+            <a href="#" class="w-10 h-10 border border-gray-700 text-gray-300 hover:border-orange-secondary hover:text-orange-secondary flex items-center justify-center transition-all duration-300 rounded-full bg-gray-800">
+              <i class="fab fa-instagram text-sm"></i>
+            </a>
+            <a href="#" class="w-10 h-10 border border-gray-700 text-gray-300 hover:border-teal-primary hover:text-teal-primary flex items-center justify-center transition-all duration-300 rounded-full bg-gray-800">
+              <i class="fab fa-twitter text-sm"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Column 2: Quick Links -->
+        <div>
+          <h4 class="text-sm uppercase tracking-[0.2em] font-bold mb-8 text-white">Quick Links</h4>
+          <ul class="flex flex-col gap-5">
+            <li><a href="index.html" class="text-sm text-gray-400 hover:text-teal-primary transition-colors duration-300 font-bold uppercase tracking-wider">Home</a></li>
+            <li><a href="about.html" class="text-sm text-gray-400 hover:text-orange-secondary transition-colors duration-300 font-bold uppercase tracking-wider">About Institute</a></li>
+            <li><a href="curriculum.html" class="text-sm text-gray-400 hover:text-teal-primary transition-colors duration-300 font-bold uppercase tracking-wider">Curriculum</a></li>
+            <li><a href="instructors.html" class="text-sm text-gray-400 hover:text-orange-secondary transition-colors duration-300 font-bold uppercase tracking-wider">Instructors</a></li>
+            <li><a href="faq.html" class="text-sm text-gray-400 hover:text-teal-primary transition-colors duration-300 font-bold uppercase tracking-wider">FAQ</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 3: Portals -->
+        <div>
+          <h4 class="text-sm uppercase tracking-[0.2em] font-bold mb-8 text-white">Access Portals</h4>
+          <ul class="flex flex-col gap-5">
+            <li><a href="student-portal.html" class="text-sm text-gray-400 hover:text-orange-secondary transition-colors duration-300 font-bold uppercase tracking-wider">Student Dashboard</a></li>
+            <li><a href="workshops.html" class="text-sm text-gray-400 hover:text-teal-primary transition-colors duration-300 font-bold uppercase tracking-wider">Cultural Workshops</a></li>
+            <li><a href="pricing.html" class="text-sm text-gray-400 hover:text-orange-secondary transition-colors duration-300 font-bold uppercase tracking-wider">Course Comparison</a></li>
+            <li><a href="login.html" class="text-sm text-gray-400 hover:text-teal-primary transition-colors duration-300 font-bold uppercase tracking-wider">Login</a></li>
+            <li><a href="register.html" class="text-sm text-gray-400 hover:text-orange-secondary transition-colors duration-300 font-bold uppercase tracking-wider">Register</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 4: Contact -->
+        <div>
+          <h4 class="text-sm uppercase tracking-[0.2em] font-bold mb-8 text-white">Contact Us</h4>
+          <ul class="flex flex-col gap-6">
+            <li class="flex items-start">
+              <i class="fas fa-map-marker-alt text-teal-primary mt-1 me-4 text-base"></i>
+              <span class="text-sm text-gray-400 font-bold uppercase tracking-wide leading-relaxed">442 Global Avenue, Metropolis City</span>
+            </li>
+            <li class="flex items-center">
+              <i class="fas fa-phone text-orange-secondary me-4 text-base"></i>
+              <a href="tel:+15559876543" class="text-sm text-gray-400 hover:text-white transition-colors font-bold uppercase tracking-wider">+1 (555) 987-6543</a>
+            </li>
+            <li class="flex items-center">
+              <i class="fas fa-envelope text-teal-primary me-4 text-base"></i>
+              <a href="mailto:info@worldvoice.edu" class="text-sm text-gray-400 hover:text-white transition-colors font-bold uppercase tracking-wider">info@worldvoice.edu</a>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Bottom Bar -->
+      <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center">
+        <p class="text-gray-500 text-xs tracking-widest uppercase mb-4 md:mb-0 font-bold">
+          © 2026 WorldVoice Institute. All rights reserved.
+        </p>
+        <div class="flex gap-6">
+          <a href="#" class="text-gray-500 hover:text-orange-secondary text-xs tracking-widest uppercase font-bold transition-colors duration-300">Privacy Policy</a>
+          <a href="#" class="text-gray-500 hover:text-teal-primary text-xs tracking-widest uppercase font-bold transition-colors duration-300">Terms of Service</a>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <script>
+    // Theme Toggle Functionality
+    const themeToggle = document.getElementById('theme-toggle');
+    const mobileThemeToggle = document.getElementById('mobile-theme-toggle');
+    const html = document.documentElement;
+
+    function toggleTheme() {
+      if (html.classList.contains('dark')) {
+        html.classList.remove('dark');
+        localStorage.setItem('theme', 'light');
+      } else {
+        html.classList.add('dark');
+        localStorage.setItem('theme', 'dark');
+      }
+    }
+
+    if (themeToggle) themeToggle.addEventListener('click', toggleTheme);
+    if (mobileThemeToggle) mobileThemeToggle.addEventListener('click', toggleTheme);
+    if (localStorage.getItem('theme') === 'light') html.classList.remove('dark');
+
+    // RTL Toggle Functionality
+    const rtlToggle = document.getElementById('rtl-toggle');
+    const mobileRtlToggle = document.getElementById('mobile-rtl-toggle');
+
+    function toggleRTL() {
+      if (html.getAttribute('dir') === 'rtl') {
+        html.removeAttribute('dir');
+        localStorage.setItem('direction', 'ltr');
+      } else {
+        html.setAttribute('dir', 'rtl');
+        localStorage.setItem('direction', 'rtl');
+      }
+    }
+
+    if (rtlToggle) rtlToggle.addEventListener('click', toggleRTL);
+    if (mobileRtlToggle) mobileRtlToggle.addEventListener('click', toggleRTL);
+    if (localStorage.getItem('direction') === 'rtl') html.setAttribute('dir', 'rtl');
+
+    // Mobile Menu Toggle
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const menuIcon = document.getElementById('menu-icon');
+    const closeIcon = document.getElementById('close-icon');
+
+    mobileMenuButton.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+      menuIcon.classList.toggle('hidden');
+      closeIcon.classList.toggle('hidden');
+      if (!mobileMenu.classList.contains('hidden')) {
+          mobileMenu.classList.add('flex');
+      } else {
+          mobileMenu.classList.remove('flex');
+      }
+    });
+
+    // Mobile Dropdown Functionality
+    function setupMobileDropdown(dropdownId, menuId, iconId) {
+      const dropdownBtn = document.getElementById(dropdownId);   
+      const menu = document.getElementById(menuId);
+      const icon = document.getElementById(iconId);
+      
+      if(dropdownBtn && menu && icon) {
+        dropdownBtn.addEventListener('click', (e) => {
+          e.preventDefault(); 
+          menu.classList.toggle('hidden');
+          if(menu.classList.contains('hidden')) {
+            icon.classList.remove('fa-minus');
+            icon.classList.add('fa-plus');
+            menu.classList.remove('flex');
+          } else {
+            icon.classList.remove('fa-plus');
+            icon.classList.add('fa-minus');
+            menu.classList.add('flex');
+          }
+        });
+      }
+    }
+
+    setupMobileDropdown('mobile-home-dropdown', 'mobile-home-menu', 'mobile-home-icon');
+    setupMobileDropdown('mobile-dash-dropdown', 'mobile-dash-menu', 'mobile-dash-icon');
+  </script>
+</body>
+</html>

@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="WorldVoice Admin Dashboard - Manage students, curriculum pathways, and faculty.">
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+    <title>Admin Portal | WorldVoice</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        'teal-primary': '#0F766E', 
+                        'orange-secondary': '#EA580C',
+                        bgLight: '#FFFFFF',
+                        bgDark: '#0F172A',   
+                        cardLight: '#F8FAFC',
+                        cardDark: '#1E293B',
+                        textLight: '#111827',
+                        textDark: '#F9FAFB'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Outfit', 'sans-serif'], 
+                    },
+                    screens: {
+                        'xs': '360px', 'sm': '390px', 'md': '768px', 
+                        'lg': '1024px', 'xl': '1280px', '2xl': '1536px', 
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        :root {
+            --bg-color: #FFFFFF;
+            --text-color: #111827;
+            --text-muted: #4B5563;
+            --card-bg: #F8FAFC;
+            --border-color: #E5E7EB;
+            --nav-bg: rgba(255, 255, 255, 0.95);
+            --hover-highlight: #0F766E; 
+            --secondary-highlight: #EA580C; 
+        }
+        
+        .dark {
+            --bg-color: #0F172A;
+            --text-color: #F9FAFB;
+            --text-muted: #9CA3AF;
+            --card-bg: #1E293B;
+            --border-color: #334155;
+            --nav-bg: rgba(15, 23, 42, 0.95);
+            --hover-highlight: #0F766E;
+            --secondary-highlight: #EA580C;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            transition: background-color 0.3s ease, color 0.3s ease;
+            overflow-x: hidden;
+            font-weight: 400; 
+        }
+
+        .no-transition * {
+            transition: none !important;
+        }
+
+        .text-body-muted { color: var(--text-muted); transition: color 0.3s ease; }
+        .bg-card { background-color: var(--card-bg); border-color: var(--border-color); }
+        .border-theme { border-color: var(--border-color); }
+
+        .glass-nav {
+            background: var(--nav-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        .utility-btn {
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 8px;
+            border: 1px solid var(--border-color); background: var(--bg-color);
+            color: var(--text-color); font-weight: 600; transition: all 0.2s ease; cursor: pointer;
+        }
+        .utility-btn:hover { border-color: var(--hover-highlight); color: var(--hover-highlight); background: var(--card-bg); }
+
+        .sidebar-link {
+            display: flex; align-items: center; gap: 0.75rem; 
+            padding: 0.75rem 1rem; border-radius: 0.75rem;
+            font-size: 0.875rem; font-weight: 500;
+            color: var(--text-muted);
+            transition: all 0.2s ease; cursor: pointer;
+            border-left: 4px solid transparent;
+        }
+        html[dir="rtl"] .sidebar-link {
+            border-left: none; border-right: 4px solid transparent;
+        }
+        .sidebar-link:hover {
+            color: var(--hover-highlight);
+            background-color: rgba(15, 118, 110, 0.05);
+        }
+        .sidebar-link.active {
+            color: var(--hover-highlight);
+            background-color: rgba(15, 118, 110, 0.1);
+            font-weight: 600;
+            border-left-color: var(--hover-highlight);
+        }
+        html[dir="rtl"] .sidebar-link.active {
+            border-right-color: var(--hover-highlight);
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in-up {
+            animation: fadeInUp 0.4s ease-out forwards;
+        }
+
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: var(--border-color); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--hover-highlight); }
+    </style>
+</head>
+<body class="antialiased font-normal flex flex-col h-screen overflow-hidden">
+
+    <nav class="h-20 shrink-0 w-full z-[100] glass-nav transition-all duration-300 border-b border-theme relative">
+        <div class="container mx-auto px-4 md:px-6 lg:px-8 h-full">
+            <div class="flex items-center justify-between h-full">
+                
+                <div class="flex items-center gap-2 xs:gap-3 sm:gap-4 shrink-0">
+                    <button type="button" id="mobile-sidebar-btn" class="text-[var(--text-color)] hover:text-[var(--hover-highlight)] text-xl bg-transparent border-0 cursor-pointer md:hidden flex items-center justify-center w-8 h-8 shrink-0">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    
+                    <a href="index.html" class="flex items-center gap-1.5 sm:gap-2 shrink-0">
+                        <span class="font-serif text-lg xs:text-xl sm:text-2xl font-bold tracking-widest text-teal-primary uppercase whitespace-nowrap">World<span class="text-orange-secondary">Voice</span></span>
+                    </a>
+                </div>
+
+                <!-- Toggles & Profile -->
+                <div class="flex items-center gap-3 sm:gap-4 shrink-0">
+                    
+                    <div class="flex items-center gap-1.5 xl:gap-3 flex-shrink-0">
+                        <!-- Theme Toggle -->
+                        <button id="theme-toggle" class="relative w-[56px] xl:w-[64px] h-[26px] xl:h-[30px] flex items-center bg-gray-200 dark:bg-gray-700 rounded-full p-1 transition-colors duration-300 focus:outline-none border border-gray-300 dark:border-gray-600 overflow-hidden" title="Toggle Theme">
+                            <span class="text-[7px] xl:text-[8px] font-bold text-gray-500 absolute end-2.5 dark:opacity-0 transition-opacity duration-300 tracking-wider">LGT</span>
+                            <span class="text-[7px] xl:text-[8px] font-bold text-gray-300 absolute start-2.5 opacity-0 dark:opacity-100 transition-opacity duration-300 tracking-wider">DRK</span>
+                            
+                            <div class="w-[18px] xl:w-[20px] h-[18px] xl:h-[20px] bg-white dark:bg-dark-bg border border-gray-200 dark:border-gray-600 rounded-full shadow-sm transform transition-transform duration-300 flex items-center justify-center rtl:dark:-translate-x-[30px] xl:rtl:dark:-translate-x-[34px] ltr:dark:translate-x-[30px] xl:ltr:dark:translate-x-[34px] dark:translate-x-[30px] xl:dark:translate-x-[34px] z-10">
+                                <i class="fas fa-sun text-[8px] xl:text-[9px] text-orange-secondary dark:hidden block"></i>
+                                <i class="fas fa-moon text-[8px] xl:text-[9px] text-teal-primary hidden dark:block"></i>
+                            </div>
+                        </button>
+                        
+                        <!-- RTL Toggle -->
+                        <button id="rtl-toggle" class="text-[9px] xl:text-[10px] font-bold text-gray-500 hover:text-teal-primary transition-colors duration-300 px-2 py-1 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800" title="Toggle RTL">
+                            RTL
+                        </button>
+                    </div>
+
+                    <div class="flex items-center gap-2 sm:gap-3 cursor-pointer group ltr:border-l rtl:border-r border-theme ltr:pl-3 rtl:pr-3 sm:ltr:pl-4 sm:rtl:pr-4">
+                        <div class="ltr:text-right rtl:text-left hidden md:flex flex-col justify-center">
+                            <p class="text-xs sm:text-sm font-semibold text-[var(--text-color)] leading-tight">Dr. Samuel Wright</p>
+                            <p class="text-[9px] sm:text-[10px] font-semibold uppercase tracking-wider text-orange-secondary">Institute Director</p>
+                        </div>
+                        <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-orange-secondary/10 flex items-center justify-center text-orange-secondary border border-orange-secondary/30 group-hover:bg-orange-secondary group-hover:text-white transition-colors shrink-0">
+                            <i class="fas fa-user-shield text-xs sm:text-base"></i>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="flex flex-1 overflow-hidden relative w-full bg-[var(--bg-color)]">
+        
+        <div id="sidebar-overlay" class="fixed inset-0 bg-black/60 z-40 hidden opacity-0 transition-opacity duration-300 md:hidden"></div>
+
+        <aside id="dashboard-sidebar" class="w-64 bg-card border-r border-theme flex-shrink-0 flex flex-col transition-transform duration-300 absolute md:relative z-50 h-full ltr:-translate-x-full ltr:md:translate-x-0 rtl:translate-x-full rtl:md:translate-x-0 shadow-2xl md:shadow-none">
+            
+            <div class="flex md:hidden items-center justify-between p-4 border-b border-theme shrink-0">
+                <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 rounded-full bg-orange-secondary/10 flex items-center justify-center text-orange-secondary border border-orange-secondary/30">
+                        <i class="fas fa-user-shield text-xs"></i>
+                    </div>
+                    <div>
+                        <p class="text-sm font-semibold text-[var(--text-color)] leading-tight">Dr. S. Wright</p>
+                        <p class="text-[10px] font-semibold uppercase tracking-wider text-orange-secondary">Director</p>
+                    </div>
+                </div>
+                <button type="button" id="close-sidebar-btn" class="w-8 h-8 flex items-center justify-center bg-transparent border-0 text-[var(--text-muted)] hover:text-teal-primary text-xl cursor-pointer">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <div class="flex-1 overflow-y-auto py-6 px-4 space-y-2">
+                
+                <span class="text-[10px] font-bold text-body-muted uppercase tracking-widest pl-4 mb-3 block">Administration</span>
+                
+                <a onclick="switchTab(event, 'section-overview')" class="sidebar-link active">
+                    <i class="fas fa-chart-pie w-5 text-center"></i> Overview
+                </a>
+                <a onclick="switchTab(event, 'section-students')" class="sidebar-link justify-between">
+                    <div class="flex items-center gap-3">
+                        <i class="fas fa-users w-5 text-center"></i> Manage Students
+                    </div>
+                    <span class="bg-teal-primary text-white text-[10px] px-2 py-0.5 rounded-full font-bold">10k+</span>
+                </a>
+                <a onclick="switchTab(event, 'section-curriculum')" class="sidebar-link">
+                    <i class="fas fa-map-signs w-5 text-center"></i> Curriculum Pathways
+                </a>
+                <a onclick="switchTab(event, 'section-workshops')" class="sidebar-link">
+                    <i class="fas fa-palette w-5 text-center"></i> Cultural Workshops
+                </a>
+                <a onclick="switchTab(event, 'section-instructors')" class="sidebar-link">
+                    <i class="fas fa-chalkboard-teacher w-5 text-center"></i> Faculty Roster
+                </a>
+                <a onclick="switchTab(event, 'section-settings')" class="sidebar-link mt-4">
+                    <i class="fas fa-cogs w-5 text-center"></i> System Settings
+                </a>
+            </div>
+
+            <div class="p-4 shrink-0 flex flex-col gap-4">
+                <a href="login.html" class="flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-red-500/10 text-red-500 hover:bg-red-500 hover:text-white transition-colors font-semibold text-sm cursor-pointer border border-transparent hover:shadow-md">
+                    <i class="fas fa-sign-out-alt ltr:rotate-0 rtl:rotate-180"></i> Secure Logout
+                </a>
+            </div>
+        </aside>
+
+        <main class="flex-1 overflow-y-auto p-4 md:p-8 lg:p-10 relative scroll-smooth">
+            
+            <!-- SECTION 1: OVERVIEW -->
+            <div id="section-overview" class="page-section block animate-fade-in-up space-y-8 max-w-6xl mx-auto pb-12">
+                
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-theme pb-6">
+                    <div>
+                        <h1 class="font-serif text-3xl md:text-4xl font-bold text-[var(--text-color)] mb-1 uppercase tracking-tight">Admin <span class="text-orange-secondary">Overview</span></h1>
+                        <p class="text-body-muted text-sm font-bold uppercase tracking-widest">Global Institute Command Center</p>
+                    </div>
+                    <button class="w-full md:w-auto inline-flex bg-teal-primary text-white px-6 py-3 rounded-full font-bold uppercase tracking-widest text-xs hover:bg-[#0b5c56] transition-colors items-center justify-center gap-2 shadow-md shadow-teal-primary/20 cursor-pointer border-0">
+                        <i class="fas fa-file-export"></i> Export Global Report
+                    </button>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Stat 1 -->
+                    <div onclick="switchTab(event, 'section-students')" class="bg-card border border-theme p-6 rounded-3xl shadow-sm hover:border-teal-primary transition-colors group cursor-pointer">
+                        <div class="flex justify-between items-start mb-6">
+                            <div class="text-teal-primary text-xs font-bold uppercase tracking-wider bg-teal-primary/10 px-3 py-1.5 rounded-lg border border-teal-primary/20"><i class="fas fa-users mr-1"></i> Enrollment</div>
+                        </div>
+                        <h3 class="text-body-muted text-xs font-bold uppercase tracking-widest mb-1">Active Students</h3>
+                        <p class="font-serif text-3xl font-bold text-[var(--text-color)] group-hover:text-teal-primary transition-colors">10,450 <span class="text-sm font-medium text-green-500 ml-2"><i class="fas fa-arrow-up"></i> 12%</span></p>
+                    </div>
+
+                    <!-- Stat 2 -->
+                    <div onclick="switchTab(event, 'section-instructors')" class="bg-card border border-theme p-6 rounded-3xl shadow-sm hover:border-orange-secondary transition-colors group cursor-pointer">
+                        <div class="flex justify-between items-start mb-6">
+                            <div class="text-orange-secondary text-xs font-bold uppercase tracking-wider bg-orange-secondary/10 px-3 py-1.5 rounded-lg border border-orange-secondary/20"><i class="fas fa-chalkboard-teacher mr-1"></i> Faculty</div>
+                        </div>
+                        <h3 class="text-body-muted text-xs font-bold uppercase tracking-widest mb-1">Native Instructors</h3>
+                        <p class="font-sans text-3xl font-bold text-[var(--text-color)] group-hover:text-orange-secondary transition-colors">54</p>
+                    </div>
+
+                    <!-- Stat 3 -->
+                    <div onclick="switchTab(event, 'section-curriculum')" class="bg-card border border-theme p-6 rounded-3xl shadow-sm hover:border-teal-primary transition-colors group cursor-pointer">
+                        <div class="flex justify-between items-start mb-6">
+                            <div class="text-[var(--text-color)] text-xs font-bold uppercase tracking-wider bg-[var(--bg-color)] border border-theme px-3 py-1.5 rounded-lg"><i class="fas fa-clipboard-list mr-1"></i> Assessments</div>
+                            <span class="bg-red-500/10 text-red-500 border border-red-500/20 text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">Action</span>
+                        </div>
+                        <h3 class="text-body-muted text-xs font-bold uppercase tracking-widest mb-1">Pending Placement Exams</h3>
+                        <p class="font-sans text-3xl font-bold text-[var(--text-color)] group-hover:text-teal-primary transition-colors">142</p>
+                    </div>
+
+                    <!-- Stat 4 -->
+                    <div onclick="switchTab(event, 'section-workshops')" class="bg-card border border-theme p-6 rounded-3xl shadow-sm hover:border-orange-secondary transition-colors group cursor-pointer">
+                        <div class="flex justify-between items-start mb-6">
+                            <div class="text-[var(--text-color)] text-xs font-bold uppercase tracking-wider bg-[var(--bg-color)] border border-theme px-3 py-1.5 rounded-lg"><i class="fas fa-palette mr-1"></i> Culture</div>
+                            <span class="bg-green-500/10 text-green-500 border border-green-500/20 text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">Live</span>
+                        </div>
+                        <h3 class="text-body-muted text-xs font-bold uppercase tracking-widest mb-1">Active Workshops</h3>
+                        <p class="font-sans text-3xl font-bold text-[var(--text-color)] group-hover:text-orange-secondary transition-colors">24</p>
+                    </div>
+                </div>
+
+                <!-- Recent Activity List -->
+                <div class="bg-card border border-theme rounded-3xl p-8 shadow-sm">
+                    <h3 class="font-serif text-2xl font-bold text-[var(--text-color)] uppercase tracking-tight mb-6 border-b border-theme pb-4">Recent Institute Activity</h3>
+                    <ul class="space-y-4">
+                        <li class="flex items-center gap-4 p-4 bg-[var(--bg-color)] rounded-xl border border-theme">
+                            <div class="w-10 h-10 rounded-full bg-teal-primary/10 text-teal-primary flex items-center justify-center shrink-0">
+                                <i class="fas fa-user-plus"></i>
+                            </div>
+                            <div class="flex-grow">
+                                <p class="text-[var(--text-color)] font-semibold text-sm">New student enrolled in Intensive Bootcamp</p>
+                                <p class="text-body-muted text-xs">James T. • C1 French Pathway</p>
+                            </div>
+                            <span class="text-xs text-body-muted font-bold">10 mins ago</span>
+                        </li>
+                        <li class="flex items-center gap-4 p-4 bg-[var(--bg-color)] rounded-xl border border-theme">
+                            <div class="w-10 h-10 rounded-full bg-orange-secondary/10 text-orange-secondary flex items-center justify-center shrink-0">
+                                <i class="fas fa-file-audio"></i>
+                            </div>
+                            <div class="flex-grow">
+                                <p class="text-[var(--text-color)] font-semibold text-sm">Practice files uploaded successfully</p>
+                                <p class="text-body-muted text-xs">Instructor Marc L. • B2 Grammar</p>
+                            </div>
+                            <span class="text-xs text-body-muted font-bold">1 hour ago</span>
+                        </li>
+                        <li class="flex items-center gap-4 p-4 bg-[var(--bg-color)] rounded-xl border border-theme">
+                            <div class="w-10 h-10 rounded-full bg-teal-primary/10 text-teal-primary flex items-center justify-center shrink-0">
+                                <i class="fas fa-clipboard-check"></i>
+                            </div>
+                            <div class="flex-grow">
+                                <p class="text-[var(--text-color)] font-semibold text-sm">Placement exam graded automatically</p>
+                                <p class="text-body-muted text-xs">Sarah J. • Passed (91%)</p>
+                            </div>
+                            <span class="text-xs text-body-muted font-bold">3 hours ago</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- SECTION 2: MANAGE STUDENTS -->
+            <div id="section-students" class="page-section hidden animate-fade-in-up space-y-6 max-w-6xl mx-auto pb-12">
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
+                    <h2 class="font-serif text-3xl md:text-4xl font-bold text-[var(--text-color)] tracking-tight uppercase">Manage <span class="text-teal-primary">Students</span></h2>
+                    <div class="flex gap-2 w-full sm:w-auto">
+                        <input type="text" placeholder="Search students..." class="bg-[var(--bg-color)] border border-theme px-4 py-2 rounded-full text-sm focus:outline-none focus:border-teal-primary w-full sm:w-64">
+                    </div>
+                </div>
+                
+                <div class="bg-card border border-theme rounded-3xl p-0 overflow-hidden shadow-sm">
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr class="bg-[var(--bg-color)] border-b border-theme">
+                                    <th class="px-6 py-5 text-xs font-bold text-body-muted uppercase tracking-widest whitespace-nowrap">Student Name</th>
+                                    <th class="px-6 py-5 text-xs font-bold text-body-muted uppercase tracking-widest whitespace-nowrap">Pathway Level</th>
+                                    <th class="px-6 py-5 text-xs font-bold text-body-muted uppercase tracking-widest whitespace-nowrap">Format</th>
+                                    <th class="px-6 py-5 text-xs font-bold text-body-muted uppercase tracking-widest whitespace-nowrap">Attendance</th>
+                                    <th class="px-6 py-5 text-xs font-bold text-body-muted uppercase tracking-widest text-right whitespace-nowrap">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-[var(--border-color)]">
+                                <!-- Student 1 -->
+                                <tr class="hover:bg-[var(--bg-color)] transition-colors group">
+                                    <td class="px-6 py-5">
+                                        <div class="flex items-center gap-3">
+                                            <div class="w-8 h-8 rounded-full bg-teal-primary/10 text-teal-primary flex items-center justify-center font-bold text-xs">SJ</div>
+                                            <div>
+                                                <p class="text-sm font-semibold text-[var(--text-color)]">Sarah Jenkins</p>
+                                                <p class="text-xs text-body-muted">sarah.j@example.com</p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-5 text-sm font-semibold text-teal-primary whitespace-nowrap">B2 French</td>
+                                    <td class="px-6 py-5 text-sm font-medium text-body-muted whitespace-nowrap">Standard</td>
+                                    <td class="px-6 py-5 text-sm font-semibold text-[var(--text-color)] whitespace-nowrap">94%</td>
+                                    <td class="px-6 py-5 text-right whitespace-nowrap">
+                                        <button class="text-body-muted hover:text-teal-primary transition-colors px-2"><i class="fas fa-edit"></i></button>
+                                        <button class="text-body-muted hover:text-red-500 transition-colors px-2"><i class="fas fa-trash"></i></button>
+                                    </td>
+                                </tr>
+                                <!-- Student 2 -->
+                                <tr class="hover:bg-[var(--bg-color)] transition-colors group">
+                                    <td class="px-6 py-5">
+                                        <div class="flex items-center gap-3">
+                                            <div class="w-8 h-8 rounded-full bg-orange-secondary/10 text-orange-secondary flex items-center justify-center font-bold text-xs">JT</div>
+                                            <div>
+                                                <p class="text-sm font-semibold text-[var(--text-color)]">James T.</p>
+                                                <p class="text-xs text-body-muted">james.t@example.com</p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-5 text-sm font-semibold text-teal-primary whitespace-nowrap">C1 French</td>
+                                    <td class="px-6 py-5 text-sm font-medium text-body-muted whitespace-nowrap">Bootcamp</td>
+                                    <td class="px-6 py-5 text-sm font-semibold text-[var(--text-color)] whitespace-nowrap">100%</td>
+                                    <td class="px-6 py-5 text-right whitespace-nowrap">
+                                        <button class="text-body-muted hover:text-teal-primary transition-colors px-2"><i class="fas fa-edit"></i></button>
+                                        <button class="text-body-muted hover:text-red-500 transition-colors px-2"><i class="fas fa-trash"></i></button>
+                                    </td>
+                                </tr>
+                                <!-- Student 3 -->
+                                <tr class="hover:bg-[var(--bg-color)] transition-colors group">
+                                    <td class="px-6 py-5">
+                                        <div class="flex items-center gap-3">
+                                            <div class="w-8 h-8 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-300 flex items-center justify-center font-bold text-xs">MR</div>
+                                            <div>
+                                                <p class="text-sm font-semibold text-[var(--text-color)]">Michael R.</p>
+                                                <p class="text-xs text-body-muted">mike.r@example.com</p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-5 text-sm font-semibold text-orange-secondary whitespace-nowrap">A1 Spanish</td>
+                                    <td class="px-6 py-5 text-sm font-medium text-body-muted whitespace-nowrap">Standard</td>
+                                    <td class="px-6 py-5 text-sm font-semibold text-red-500 whitespace-nowrap">65% (Warning)</td>
+                                    <td class="px-6 py-5 text-right whitespace-nowrap">
+                                        <button class="text-body-muted hover:text-teal-primary transition-colors px-2"><i class="fas fa-edit"></i></button>
+                                        <button class="text-body-muted hover:text-red-500 transition-colors px-2"><i class="fas fa-trash"></i></button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECTION 3: CURRICULUM PATHWAYS -->
+            <div id="section-curriculum" class="page-section hidden animate-fade-in-up space-y-6 max-w-6xl mx-auto pb-12">
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
+                    <h2 class="font-serif text-3xl md:text-4xl font-bold text-[var(--text-color)] tracking-tight uppercase">Curriculum <span class="text-orange-secondary">Pathways</span></h2>
+                    <button class="bg-orange-secondary text-white px-6 py-3 rounded-full font-bold text-xs uppercase tracking-widest hover:bg-[#c9490a] transition-colors border-0 cursor-pointer shadow-sm">
+                        <i class="fas fa-upload mr-2"></i> Upload Resources
+                    </button>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- A Level -->
+                    <div class="bg-card border border-theme rounded-3xl p-6 shadow-sm flex flex-col">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-12 h-12 rounded-xl bg-teal-primary/10 text-teal-primary flex items-center justify-center text-xl font-bold">A</div>
+                            <h3 class="text-xl font-bold text-[var(--text-color)] uppercase">Beginner</h3>
+                        </div>
+                        <p class="text-sm text-body-muted mb-6 flex-grow">Manage syllabus for A1 & A2 levels. Update placement exam criteria and foundational practice files.</p>
+                        <button class="w-full bg-[var(--bg-color)] border border-theme text-[var(--text-color)] hover:border-teal-primary hover:text-teal-primary transition-colors py-3 rounded-xl font-bold uppercase tracking-widest text-xs cursor-pointer">Edit Modules</button>
+                    </div>
+
+                    <!-- B Level -->
+                    <div class="bg-card border border-theme rounded-3xl p-6 shadow-sm flex flex-col">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-12 h-12 rounded-xl bg-orange-secondary/10 text-orange-secondary flex items-center justify-center text-xl font-bold">B</div>
+                            <h3 class="text-xl font-bold text-[var(--text-color)] uppercase">Intermediate</h3>
+                        </div>
+                        <p class="text-sm text-body-muted mb-6 flex-grow">Adjust B1 & B2 requirements. Review audio pronunciation files and digital grade book logic.</p>
+                        <button class="w-full bg-[var(--bg-color)] border border-theme text-[var(--text-color)] hover:border-orange-secondary hover:text-orange-secondary transition-colors py-3 rounded-xl font-bold uppercase tracking-widest text-xs cursor-pointer">Edit Modules</button>
+                    </div>
+
+                    <!-- C Level -->
+                    <div class="bg-card border border-theme rounded-3xl p-6 shadow-sm flex flex-col">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-12 h-12 rounded-xl bg-teal-primary/10 text-teal-primary flex items-center justify-center text-xl font-bold">C</div>
+                            <h3 class="text-xl font-bold text-[var(--text-color)] uppercase">Advanced</h3>
+                        </div>
+                        <p class="text-sm text-body-muted mb-6 flex-grow">Refine C1 & C2 literature and debate structures. Approve final certification assessments.</p>
+                        <button class="w-full bg-[var(--bg-color)] border border-theme text-[var(--text-color)] hover:border-teal-primary hover:text-teal-primary transition-colors py-3 rounded-xl font-bold uppercase tracking-widest text-xs cursor-pointer">Edit Modules</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECTION 4: CULTURAL WORKSHOPS -->
+            <div id="section-workshops" class="page-section hidden animate-fade-in-up space-y-6 max-w-6xl mx-auto pb-12">
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
+                    <h2 class="font-serif text-3xl md:text-4xl font-bold text-[var(--text-color)] tracking-tight uppercase">Cultural <span class="text-teal-primary">Workshops</span></h2>
+                    <button class="bg-teal-primary text-white px-6 py-3 rounded-full font-bold text-xs uppercase tracking-widest hover:bg-[#0b5c56] transition-colors border-0 cursor-pointer shadow-sm">
+                        <i class="fas fa-plus mr-2"></i> Schedule Workshop
+                    </button>
+                </div>
+                
+                <div class="bg-card border border-theme rounded-3xl p-6 shadow-sm space-y-4">
+                    <!-- Workshop 1 -->
+                    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between p-4 bg-[var(--bg-color)] border border-theme rounded-2xl shadow-sm hover:border-orange-secondary transition-colors gap-4">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-orange-secondary/10 text-orange-secondary flex items-center justify-center shrink-0 text-xl border border-orange-secondary/20">
+                                <i class="fas fa-utensils"></i>
+                            </div>
+                            <div>
+                                <p class="text-[var(--text-color)] font-bold text-base uppercase">Parisian Cafe Culture</p>
+                                <p class="text-body-muted text-xs font-medium">Marc Laurent • Oct 14 • B1/B2 Level</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3 w-full sm:w-auto">
+                            <span class="text-xs font-bold bg-gray-100 dark:bg-gray-800 text-[var(--text-color)] px-3 py-1 rounded-md">45 Registered</span>
+                            <button class="text-body-muted bg-card border border-theme px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-widest hover:text-teal-primary transition-colors cursor-pointer w-full sm:w-auto">Manage</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Workshop 2 -->
+                    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between p-4 bg-[var(--bg-color)] border border-theme rounded-2xl shadow-sm hover:border-teal-primary transition-colors gap-4">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-teal-primary/10 text-teal-primary flex items-center justify-center shrink-0 text-xl border border-teal-primary/20">
+                                <i class="fas fa-landmark"></i>
+                            </div>
+                            <div>
+                                <p class="text-[var(--text-color)] font-bold text-base uppercase">History of Flamenco</p>
+                                <p class="text-body-muted text-xs font-medium">Sofia Rossi • Oct 12 • A1/A2 Level</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3 w-full sm:w-auto">
+                            <span class="text-xs font-bold bg-gray-100 dark:bg-gray-800 text-[var(--text-color)] px-3 py-1 rounded-md">80 Registered</span>
+                            <button class="text-body-muted bg-card border border-theme px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-widest hover:text-teal-primary transition-colors cursor-pointer w-full sm:w-auto">Manage</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECTION 5: FACULTY ROSTER -->
+            <div id="section-instructors" class="page-section hidden animate-fade-in-up space-y-6 max-w-6xl mx-auto pb-12">
+                <h2 class="font-serif text-3xl md:text-4xl font-bold text-[var(--text-color)] tracking-tight mb-6 uppercase">Faculty <span class="text-orange-secondary">Roster</span></h2>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Instructor 1 -->
+                    <div class="bg-card border border-theme rounded-3xl p-6 shadow-sm flex flex-col items-center text-center">
+                        <img src="https://images.unsplash.com/photo-1544717302-de2939b7ef71?q=80&w=150&auto=format&fit=crop" class="w-20 h-20 rounded-full object-cover mb-4 border-2 border-teal-primary" alt="Instructor">
+                        <h3 class="font-bold text-[var(--text-color)] text-lg uppercase">Marc Laurent</h3>
+                        <p class="text-xs text-body-muted mb-4">French • B1-C2</p>
+                        <div class="w-full grid grid-cols-2 gap-2 mb-4">
+                            <div class="bg-[var(--bg-color)] border border-theme py-2 rounded-lg text-xs font-bold text-teal-primary">12 Classes</div>
+                            <div class="bg-[var(--bg-color)] border border-theme py-2 rounded-lg text-xs font-bold text-orange-secondary">4.9/5 Rating</div>
+                        </div>
+                        <button class="w-full text-[var(--text-color)] border border-theme hover:border-teal-primary hover:text-teal-primary transition-colors py-2 rounded-xl text-xs font-bold uppercase tracking-widest cursor-pointer bg-transparent">View Schedule</button>
+                    </div>
+
+                    <!-- Instructor 2 -->
+                    <div class="bg-card border border-theme rounded-3xl p-6 shadow-sm flex flex-col items-center text-center">
+                        <img src="https://images.unsplash.com/photo-1580894732444-8ecded7900cd?q=80&w=150&auto=format&fit=crop" class="w-20 h-20 rounded-full object-cover mb-4 border-2 border-orange-secondary" alt="Instructor">
+                        <h3 class="font-bold text-[var(--text-color)] text-lg uppercase">Sofia Rossi</h3>
+                        <p class="text-xs text-body-muted mb-4">Italian • A1-B2</p>
+                        <div class="w-full grid grid-cols-2 gap-2 mb-4">
+                            <div class="bg-[var(--bg-color)] border border-theme py-2 rounded-lg text-xs font-bold text-teal-primary">8 Classes</div>
+                            <div class="bg-[var(--bg-color)] border border-theme py-2 rounded-lg text-xs font-bold text-orange-secondary">4.8/5 Rating</div>
+                        </div>
+                        <button class="w-full text-[var(--text-color)] border border-theme hover:border-orange-secondary hover:text-orange-secondary transition-colors py-2 rounded-xl text-xs font-bold uppercase tracking-widest cursor-pointer bg-transparent">View Schedule</button>
+                    </div>
+
+                    <!-- Instructor 3 -->
+                    <div class="bg-card border border-theme rounded-3xl p-6 shadow-sm flex flex-col items-center text-center">
+                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=150&auto=format&fit=crop" class="w-20 h-20 rounded-full object-cover mb-4 border-2 border-teal-primary" alt="Instructor">
+                        <h3 class="font-bold text-[var(--text-color)] text-lg uppercase">David Chen</h3>
+                        <p class="text-xs text-body-muted mb-4">Mandarin • A1-C2</p>
+                        <div class="w-full grid grid-cols-2 gap-2 mb-4">
+                            <div class="bg-[var(--bg-color)] border border-theme py-2 rounded-lg text-xs font-bold text-teal-primary">15 Classes</div>
+                            <div class="bg-[var(--bg-color)] border border-theme py-2 rounded-lg text-xs font-bold text-orange-secondary">5.0/5 Rating</div>
+                        </div>
+                        <button class="w-full text-[var(--text-color)] border border-theme hover:border-teal-primary hover:text-teal-primary transition-colors py-2 rounded-xl text-xs font-bold uppercase tracking-widest cursor-pointer bg-transparent">View Schedule</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECTION 6: SETTINGS -->
+            <div id="section-settings" class="page-section hidden animate-fade-in-up space-y-6 max-w-6xl mx-auto pb-12">
+                <h2 class="font-serif text-3xl md:text-4xl font-bold text-[var(--text-color)] tracking-tight mb-6 uppercase">System Settings</h2>
+                
+                <div class="bg-card border border-theme rounded-3xl p-8 shadow-sm max-w-2xl">
+                    <form class="space-y-6">
+                        <div>
+                            <label class="block text-xs font-bold text-body-muted uppercase tracking-widest mb-2">Global Alert Banner (Visible to all students)</label>
+                            <input type="text" value="System maintenance scheduled for Sunday 2AM EST." class="w-full px-5 py-4 rounded-xl bg-[var(--bg-color)] border border-theme text-[var(--text-color)] focus:outline-none focus:border-teal-primary focus:ring-1 focus:ring-teal-primary transition-colors font-medium">
+                        </div>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-xs font-bold text-body-muted uppercase tracking-widest mb-2">Registration Status</label>
+                                <select class="w-full px-5 py-4 rounded-xl bg-[var(--bg-color)] border border-theme text-[var(--text-color)] focus:outline-none focus:border-teal-primary focus:ring-1 focus:ring-teal-primary transition-colors font-medium">
+                                    <option>Open (Accepting Students)</option>
+                                    <option>Waitlist Only</option>
+                                    <option>Closed</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-body-muted uppercase tracking-widest mb-2">Automated Grading</label>
+                                <select class="w-full px-5 py-4 rounded-xl bg-[var(--bg-color)] border border-theme text-[var(--text-color)] focus:outline-none focus:border-teal-primary focus:ring-1 focus:ring-teal-primary transition-colors font-medium">
+                                    <option>Enabled</option>
+                                    <option>Manual Review Required</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="pt-4 border-t border-theme">
+                            <button type="button" class="bg-teal-primary text-white px-8 py-4 rounded-full font-bold uppercase tracking-widest text-xs hover:bg-orange-secondary transition-colors shadow-md border-0 cursor-pointer w-full sm:w-auto">Update System</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="mt-8 pt-8 border-t border-theme flex flex-col sm:flex-row items-center justify-between text-xs font-bold uppercase tracking-widest text-body-muted max-w-7xl mx-auto pb-6">
+                <p>&copy; 2026 WorldVoice Institute. Admin Portal.</p>
+                <div class="flex gap-4 mt-4 sm:mt-0">
+                    <a href="#" class="hover:text-teal-primary transition-colors">Documentation</a>
+                    <a href="#" class="hover:text-teal-primary transition-colors">Server Status</a>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <script>
+        // --- Theme Toggle Logic ---
+        const htmlElement = document.documentElement;
+        const themeToggleBtns = document.querySelectorAll('#theme-toggle');
+
+        function updateTheme() {
+            const isDark = htmlElement.classList.contains('dark');
+            
+            themeToggleBtns.forEach(btn => {
+                const iconSun = btn.querySelector('.fa-sun');
+                const iconMoon = btn.querySelector('.fa-moon');
+                if (iconSun && iconMoon) {
+                    if (isDark) {
+                        iconSun.classList.add('hidden');
+                        iconMoon.classList.remove('hidden');
+                    } else {
+                        iconSun.classList.remove('hidden');
+                        iconMoon.classList.add('hidden');
+                    }
+                }
+            });
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        }
+
+        themeToggleBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation(); 
+                htmlElement.classList.toggle('dark');
+                updateTheme();
+            });
+        });
+
+        // Initialize Theme Based on LocalStorage (Default to Light if not set)
+        if (localStorage.getItem('theme') === 'dark') {
+            htmlElement.classList.add('dark');
+        } else {
+            htmlElement.classList.remove('dark'); // Default to light mode
+        }
+        updateTheme();
+
+        // --- RTL Toggle Logic ---
+        const rtlToggleBtns = document.querySelectorAll('#rtl-toggle, .rtl-toggle-btn');
+        function toggleRTL(e) {
+            if(e) { e.preventDefault(); e.stopPropagation(); }
+            document.body.classList.add('no-transition');
+            if (htmlElement.getAttribute('dir') === 'rtl') {
+                htmlElement.removeAttribute('dir');
+                localStorage.setItem('direction', 'ltr');
+            } else {
+                htmlElement.setAttribute('dir', 'rtl');
+                localStorage.setItem('direction', 'rtl');
+            }
+            setTimeout(() => { document.body.classList.remove('no-transition'); }, 50);
+        }
+
+        rtlToggleBtns.forEach(btn => {
+            btn.addEventListener('click', toggleRTL);
+        });
+        
+        // Initialize RTL from local storage
+        if (localStorage.getItem('direction') === 'rtl') {
+            htmlElement.setAttribute('dir', 'rtl');
+        }
+
+        // --- Mobile Sidebar Logic ---
+        const sidebar = document.getElementById('dashboard-sidebar');
+        const mobileToggleBtn = document.getElementById('mobile-sidebar-btn');
+        const closeSidebarBtn = document.getElementById('close-sidebar-btn');
+        const sidebarOverlay = document.getElementById('sidebar-overlay');
+
+        function toggleSidebar() {
+            const isRTL = htmlElement.getAttribute('dir') === 'rtl';
+            const closedClass = isRTL ? 'rtl:translate-x-full' : 'ltr:-translate-x-full';
+            
+            const isHidden = sidebar.classList.contains(closedClass);
+            
+            if (isHidden) {
+                sidebar.classList.remove('ltr:-translate-x-full', 'rtl:translate-x-full');
+                sidebarOverlay.classList.remove('hidden');
+                setTimeout(() => { sidebarOverlay.classList.remove('opacity-0'); sidebarOverlay.classList.add('opacity-100'); }, 10);
+            } else {
+                if (isRTL) {
+                    sidebar.classList.add('rtl:translate-x-full');
+                } else {
+                    sidebar.classList.add('ltr:-translate-x-full');
+                }
+                sidebarOverlay.classList.remove('opacity-100');
+                sidebarOverlay.classList.add('opacity-0');
+                setTimeout(() => { sidebarOverlay.classList.add('hidden'); }, 300);
+            }
+        }
+
+        if (mobileToggleBtn) mobileToggleBtn.addEventListener('click', toggleSidebar);
+        if (closeSidebarBtn) closeSidebarBtn.addEventListener('click', toggleSidebar);
+        if (sidebarOverlay) sidebarOverlay.addEventListener('click', toggleSidebar);
+
+        // --- Tab Switching Logic ---
+        window.switchTab = function(event, targetId) {
+            if(event) event.preventDefault();
+            
+            const sections = document.querySelectorAll('.page-section');
+            sections.forEach(section => {
+                section.classList.remove('block', 'animate-fade-in-up');
+                section.classList.add('hidden');
+            });
+
+            const targetSection = document.getElementById(targetId);
+            if (targetSection) {
+                targetSection.classList.remove('hidden');
+                void targetSection.offsetWidth; 
+                targetSection.classList.add('block', 'animate-fade-in-up');
+            }
+
+            if (event && event.currentTarget && event.currentTarget.classList.contains('sidebar-link')) {
+                document.querySelectorAll('.sidebar-link').forEach(link => {
+                    link.classList.remove('active');
+                });
+                event.currentTarget.classList.add('active');
+            } else if (targetId) {
+                 document.querySelectorAll('.sidebar-link').forEach(link => {
+                    link.classList.remove('active');
+                    if(link.getAttribute('onclick') && link.getAttribute('onclick').includes(targetId)) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+
+            if (window.innerWidth < 1024 && event && event.currentTarget && event.currentTarget.classList.contains('sidebar-link')) {
+                const isRTL = htmlElement.getAttribute('dir') === 'rtl';
+                if (isRTL) {
+                    sidebar.classList.add('rtl:translate-x-full');
+                } else {
+                    sidebar.classList.add('ltr:-translate-x-full');
+                }
+                sidebarOverlay.classList.remove('opacity-100');
+                sidebarOverlay.classList.add('opacity-0');
+                setTimeout(() => { sidebarOverlay.classList.add('hidden'); }, 300);
+            }
+        };
+
+        document.addEventListener("DOMContentLoaded", () => {
+            switchTab(null, 'section-overview');
+        });
+    </script>
+</body>
+</html>
