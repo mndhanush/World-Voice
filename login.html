@@ -102,7 +102,7 @@
         }
     </style>
 </head>
-<body class="antialiased font-normal h-screen overflow-hidden flex flex-col">
+<body class="antialiased font-normal min-h-screen flex flex-col relative bg-[var(--bg-color)]">
 
     <nav class="fixed w-full top-0 z-[100] glass-nav transition-all duration-300 shadow-sm">
         <div class="container mx-auto px-4 md:px-6 lg:px-8">
@@ -113,7 +113,6 @@
                 </a>
 
                 <div class="flex items-center gap-2 sm:gap-3 flex-shrink-0">
-                    <a href="index.html" class="text-[10px] uppercase tracking-wider font-bold text-gray-800 dark:text-gray-200 hover:text-teal-primary dark:hover:text-teal-primary transition-colors px-2 hidden sm:block">Back to Site</a>
                     
                     <button id="theme-toggle" class="relative w-[56px] xl:w-[64px] h-[26px] xl:h-[30px] flex items-center bg-gray-200 dark:bg-gray-700 rounded-full p-1 transition-colors duration-300 focus:outline-none border border-gray-300 dark:border-gray-600 overflow-hidden" title="Toggle Theme">
                         <span class="text-[7px] xl:text-[8px] font-bold text-gray-500 absolute end-2.5 dark:opacity-0 transition-opacity duration-300 tracking-wider">LGT</span>
@@ -137,8 +136,8 @@
     <div class="absolute top-20 start-10 w-72 h-72 bg-teal-primary/10 rounded-full blur-3xl animate-pulse pointer-events-none z-0"></div>
     <div class="absolute bottom-20 end-10 w-96 h-96 bg-orange-secondary/10 rounded-full blur-3xl animate-pulse pointer-events-none z-0" style="animation-delay: 1.5s;"></div>
 
-    <div class="flex-1 overflow-y-auto flex items-center justify-center p-4 pt-20 relative z-10">
-        <div class="w-full max-w-[340px] bg-card border border-theme shadow-2xl p-6 animate-fade-in group rounded-2xl relative overflow-hidden z-10">
+    <div class="flex-1 flex items-center justify-center p-4 py-28 relative z-10 w-full">
+        <div class="w-full max-w-[380px] bg-card border border-theme shadow-2xl p-6 sm:p-8 animate-fade-in group rounded-2xl relative overflow-hidden z-10">
             
             <div class="absolute top-0 start-0 w-full h-1 bg-gradient-to-r from-teal-primary to-orange-secondary"></div>
 
@@ -155,8 +154,8 @@
                     <input 
                         type="email" 
                         required
-                        placeholder="STUDENT@EXAMPLE.COM"
-                        class="w-full px-3 py-3 bg-[var(--bg-color)] border border-theme text-[var(--text-color)] text-xs uppercase tracking-widest focus:outline-none focus:border-teal-primary focus:ring-1 focus:ring-teal-primary rounded-lg transition-all"
+                        placeholder="student@example.com"
+                        class="w-full px-4 py-3 bg-[var(--bg-color)] border border-theme text-[var(--text-color)] text-sm focus:outline-none focus:border-teal-primary focus:ring-1 focus:ring-teal-primary rounded-xl transition-all"
                     />
                 </div>
 
@@ -169,8 +168,8 @@
                             type="password" 
                             id="password"
                             required
-                            placeholder="ENTER YOUR PASSWORD"
-                            class="w-full px-3 py-3 bg-[var(--bg-color)] border border-theme text-[var(--text-color)] text-xs uppercase tracking-widest focus:outline-none focus:border-teal-primary focus:ring-1 focus:ring-teal-primary rounded-lg transition-all"
+                            placeholder="••••••••"
+                            class="w-full px-4 py-3 bg-[var(--bg-color)] border border-theme text-[var(--text-color)] text-sm focus:outline-none focus:border-teal-primary focus:ring-1 focus:ring-teal-primary rounded-xl transition-all"
                         />
                         <button 
                             type="button" 
@@ -209,10 +208,10 @@
                     </div>
                 </div>
 
-                <div class="flex flex-col gap-3">
+                <div class="grid grid-cols-2 gap-3">
                     <button 
                         type="button"
-                        class="flex items-center justify-center w-full px-3 py-2.5 border border-theme hover:border-teal-primary transition-colors bg-[var(--bg-color)] rounded-full gap-2 shadow-sm"
+                        class="flex items-center justify-center w-full px-3 py-3 border border-theme hover:border-teal-primary transition-colors bg-[var(--bg-color)] rounded-xl gap-2 shadow-sm"
                     >
                         <svg class="w-4 h-4" viewBox="0 0 24 24">
                             <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
@@ -225,7 +224,7 @@
 
                     <button 
                         type="button"
-                        class="flex items-center justify-center w-full px-3 py-2.5 border border-theme hover:border-teal-primary transition-colors bg-[var(--bg-color)] rounded-full gap-2 shadow-sm"
+                        class="flex items-center justify-center w-full px-3 py-3 border border-theme hover:border-teal-primary transition-colors bg-[var(--bg-color)] rounded-xl gap-2 shadow-sm"
                     >
                         <i class="fab fa-apple text-base text-[var(--text-color)]"></i>
                         <span class="text-[10px] font-bold uppercase tracking-widest text-[var(--text-color)]">Apple</span>
