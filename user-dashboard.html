@@ -675,144 +675,149 @@
     </div>
 
     <script>
-    // Theme Toggle Functionality
-    const themeToggle = document.getElementById('theme-toggle');
-    const mobileThemeToggle = document.getElementById('mobile-theme-toggle');
-    const html = document.documentElement;
+        // --- Theme Toggle Logic ---
+        const htmlElement = document.documentElement;
+        const themeToggleBtns = document.querySelectorAll('#theme-toggle');
 
-    function toggleTheme() {
-      if (html.classList.contains('dark')) {
-        html.classList.remove('dark');
-        localStorage.setItem('theme', 'light');
-      } else {
-        html.classList.add('dark');
-        localStorage.setItem('theme', 'dark');
-      }
-    }
+        function updateTheme() {
+            const isDark = htmlElement.classList.contains('dark');
+            
+            themeToggleBtns.forEach(btn => {
+                const iconSun = btn.querySelector('.fa-sun');
+                const iconMoon = btn.querySelector('.fa-moon');
+                if (iconSun && iconMoon) {
+                    if (isDark) {
+                        iconSun.classList.add('hidden');
+                        iconMoon.classList.remove('hidden');
+                    } else {
+                        iconSun.classList.remove('hidden');
+                        iconMoon.classList.add('hidden');
+                    }
+                }
+            });
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        }
 
-    if (themeToggle) themeToggle.addEventListener('click', toggleTheme);
-    if (mobileThemeToggle) mobileThemeToggle.addEventListener('click', toggleTheme);
-    if (localStorage.getItem('theme') === 'light') html.classList.remove('dark');
-
-    // RTL Toggle Functionality
-    const rtlToggle = document.getElementById('rtl-toggle');
-    const mobileRtlToggle = document.getElementById('mobile-rtl-toggle');
-
-    function toggleRTL() {
-      if (html.getAttribute('dir') === 'rtl') {
-        html.removeAttribute('dir');
-        localStorage.setItem('direction', 'ltr');
-      } else {
-        html.setAttribute('dir', 'rtl');
-        localStorage.setItem('direction', 'rtl');
-      }
-    }
-
-    if (rtlToggle) rtlToggle.addEventListener('click', toggleRTL);
-    if (mobileRtlToggle) mobileRtlToggle.addEventListener('click', toggleRTL);
-    if (localStorage.getItem('direction') === 'rtl') html.setAttribute('dir', 'rtl');
-
-    // Mobile Menu Toggle
-    const mobileMenuButton = document.getElementById('mobile-menu-button');
-    const mobileMenu = document.getElementById('mobile-menu');
-    const menuIcon = document.getElementById('menu-icon');
-    const closeIcon = document.getElementById('close-icon');
-
-    mobileMenuButton.addEventListener('click', () => {
-      mobileMenu.classList.toggle('hidden');
-      menuIcon.classList.toggle('hidden');
-      closeIcon.classList.toggle('hidden');
-      if (!mobileMenu.classList.contains('hidden')) {
-          mobileMenu.classList.add('flex');
-      } else {
-          mobileMenu.classList.remove('flex');
-      }
-    });
-
-    // Mobile Dropdown Functionality
-    function setupMobileDropdown(dropdownId, menuId, iconId) {
-      const dropdownBtn = document.getElementById(dropdownId);   
-      const menu = document.getElementById(menuId);
-      const icon = document.getElementById(iconId);
-      
-      if(dropdownBtn && menu && icon) {
-        dropdownBtn.addEventListener('click', (e) => {
-          e.preventDefault(); 
-          menu.classList.toggle('hidden');
-          if(menu.classList.contains('hidden')) {
-            icon.classList.remove('fa-minus');
-            icon.classList.add('fa-plus');
-            menu.classList.remove('flex');
-          } else {
-            icon.classList.remove('fa-plus');
-            icon.classList.add('fa-minus');
-            menu.classList.add('flex');
-          }
+        themeToggleBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation(); 
+                htmlElement.classList.toggle('dark');
+                updateTheme();
+            });
         });
-      }
-    }
 
-    setupMobileDropdown('mobile-home-dropdown', 'mobile-home-menu', 'mobile-home-icon');
-    setupMobileDropdown('mobile-dash-dropdown', 'mobile-dash-menu', 'mobile-dash-icon');
-  
-    
-  
-    // Active Page Detection
-    document.addEventListener('DOMContentLoaded', () => {
-      // Get the absolute URL without hashes or query parameters
-      let currentUrl = window.location.href.split('#')[0].split('?')[0];
-      
-      // If the URL ends with a slash (e.g. directory root), assume index.html
-      if (currentUrl.endsWith('/')) {
-          currentUrl += 'index.html';
-      }
+        // Initialize Theme Based on LocalStorage (Default to Light if not set)
+        if (localStorage.getItem('theme') === 'dark') {
+            htmlElement.classList.add('dark');
+        } else {
+            htmlElement.classList.remove('dark'); // Default to light mode
+        }
+        updateTheme();
 
-      // Desktop Nav Detection
-      // Using a simpler selector to avoid issues with escaped colons
-      const desktopNavContainer = document.querySelector('.hidden.xl\\:flex');
-      if (desktopNavContainer) {
-          const desktopLinks = desktopNavContainer.querySelectorAll('a[href]');
-          desktopLinks.forEach(link => {
-              if (link.href.split('#')[0].split('?')[0] === currentUrl) {
-                  // Remove normal classes
-                  link.classList.remove('text-gray-800', 'dark:text-gray-200', 'hover:bg-gray-100', 'dark:hover:bg-gray-800', 'hover:text-teal-primary', 'dark:hover:text-teal-primary');
-                  // Add active classes
-                  link.classList.add('text-teal-primary', 'dark:text-teal-primary', 'bg-gray-50', 'dark:bg-gray-800');
-                  
-                  // If it's inside a dropdown (like Home or Dashboard)
-                  const parentDropdownBtn = link.closest('.group')?.querySelector('a');
-                  if (parentDropdownBtn && parentDropdownBtn !== link) {
-                      parentDropdownBtn.classList.remove('text-gray-800', 'dark:text-gray-200');
-                      parentDropdownBtn.classList.add('text-teal-primary', 'dark:text-teal-primary');
-                  }
-              }
-          });
-      }
+        // --- RTL Toggle Logic ---
+        const rtlToggleBtns = document.querySelectorAll('#rtl-toggle, .rtl-toggle-btn');
+        function toggleRTL(e) {
+            if(e) { e.preventDefault(); e.stopPropagation(); }
+            document.body.classList.add('no-transition');
+            if (htmlElement.getAttribute('dir') === 'rtl') {
+                htmlElement.removeAttribute('dir');
+                localStorage.setItem('direction', 'ltr');
+            } else {
+                htmlElement.setAttribute('dir', 'rtl');
+                localStorage.setItem('direction', 'rtl');
+            }
+            setTimeout(() => { document.body.classList.remove('no-transition'); }, 50);
+        }
 
-      // Mobile Nav Detection
-      const mobileNavContainer = document.getElementById('mobile-menu');
-      if (mobileNavContainer) {
-          const mobileLinks = mobileNavContainer.querySelectorAll('a[href]');
-          mobileLinks.forEach(link => {
-              if (link.href.split('#')[0].split('?')[0] === currentUrl) {
-                  // Remove normal classes
-                  link.classList.remove('text-gray-800', 'dark:text-gray-200');
-                  // Add active classes
-                  link.classList.add('text-teal-primary', 'dark:text-teal-primary');
-                  
-                  // If it's inside a dropdown
-                  const parentDropdownContainer = link.closest('.flex-col');
-                  if (parentDropdownContainer) {
-                      const parentDropdownBtn = parentDropdownContainer.parentElement.querySelector('button');
-                      if (parentDropdownBtn) {
-                          parentDropdownBtn.classList.remove('text-gray-800', 'dark:text-gray-200');
-                          parentDropdownBtn.classList.add('text-teal-primary', 'dark:text-teal-primary');
-                      }
-                  }
-              }
-          });
-      }
-    });
-  </script>
+        rtlToggleBtns.forEach(btn => {
+            btn.addEventListener('click', toggleRTL);
+        });
+        
+        // Initialize RTL from local storage
+        if (localStorage.getItem('direction') === 'rtl') {
+            htmlElement.setAttribute('dir', 'rtl');
+        }
+
+        // --- Mobile Sidebar Logic ---
+        const sidebar = document.getElementById('dashboard-sidebar');
+        const mobileToggleBtn = document.getElementById('mobile-sidebar-btn');
+        const closeSidebarBtn = document.getElementById('close-sidebar-btn');
+        const sidebarOverlay = document.getElementById('sidebar-overlay');
+
+        function toggleSidebar() {
+            const isRTL = htmlElement.getAttribute('dir') === 'rtl';
+            const closedClass = isRTL ? 'rtl:translate-x-full' : 'ltr:-translate-x-full';
+            
+            const isHidden = sidebar.classList.contains(closedClass);
+            
+            if (isHidden) {
+                sidebar.classList.remove('ltr:-translate-x-full', 'rtl:translate-x-full');
+                sidebarOverlay.classList.remove('hidden');
+                setTimeout(() => { sidebarOverlay.classList.remove('opacity-0'); sidebarOverlay.classList.add('opacity-100'); }, 10);
+            } else {
+                if (isRTL) {
+                    sidebar.classList.add('rtl:translate-x-full');
+                } else {
+                    sidebar.classList.add('ltr:-translate-x-full');
+                }
+                sidebarOverlay.classList.remove('opacity-100');
+                sidebarOverlay.classList.add('opacity-0');
+                setTimeout(() => { sidebarOverlay.classList.add('hidden'); }, 300);
+            }
+        }
+
+        if (mobileToggleBtn) mobileToggleBtn.addEventListener('click', toggleSidebar);
+        if (closeSidebarBtn) closeSidebarBtn.addEventListener('click', toggleSidebar);
+        if (sidebarOverlay) sidebarOverlay.addEventListener('click', toggleSidebar);
+
+        // --- Tab Switching Logic ---
+        window.switchTab = function(event, targetId) {
+            if(event) event.preventDefault();
+            
+            const sections = document.querySelectorAll('.page-section');
+            sections.forEach(section => {
+                section.classList.remove('block', 'animate-fade-in-up');
+                section.classList.add('hidden');
+            });
+
+            const targetSection = document.getElementById(targetId);
+            if (targetSection) {
+                targetSection.classList.remove('hidden');
+                void targetSection.offsetWidth; 
+                targetSection.classList.add('block', 'animate-fade-in-up');
+            }
+
+            if (event && event.currentTarget && event.currentTarget.classList.contains('sidebar-link')) {
+                document.querySelectorAll('.sidebar-link').forEach(link => {
+                    link.classList.remove('active');
+                });
+                event.currentTarget.classList.add('active');
+            } else if (targetId) {
+                 document.querySelectorAll('.sidebar-link').forEach(link => {
+                    link.classList.remove('active');
+                    if(link.getAttribute('onclick') && link.getAttribute('onclick').includes(targetId)) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+
+            if (window.innerWidth < 1024 && event && event.currentTarget && event.currentTarget.classList.contains('sidebar-link')) {
+                const isRTL = htmlElement.getAttribute('dir') === 'rtl';
+                if (isRTL) {
+                    sidebar.classList.add('rtl:translate-x-full');
+                } else {
+                    sidebar.classList.add('ltr:-translate-x-full');
+                }
+                sidebarOverlay.classList.remove('opacity-100');
+                sidebarOverlay.classList.add('opacity-0');
+                setTimeout(() => { sidebarOverlay.classList.add('hidden'); }, 300);
+            }
+        };
+
+        document.addEventListener("DOMContentLoaded", () => {
+            switchTab(null, 'section-overview');
+        });
+    </script>
 </body>
 </html>
