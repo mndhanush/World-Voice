@@ -44,7 +44,7 @@
 
   <!-- FLOATING NAVBAR -->
   <div class="fixed top-4 left-0 right-0 z-50 px-4 sm:px-6 lg:px-8 flex justify-center pointer-events-none">
-    <nav class="w-full max-w-[1600px] bg-light-bg/90 dark:bg-dark-surface/90 backdrop-blur-lg border border-gray-200 dark:border-gray-700 rounded-2xl 2xl:rounded-full shadow-2xl transition-colors duration-300 pointer-events-auto relative">
+    <nav class="w-full max-w-[1600px] bg-light-bg/90 dark:bg-dark-surface/90 backdrop-blur-lg border border-gray-200 dark:border-gray-700 rounded-2xl xl:rounded-full shadow-2xl transition-colors duration-300 pointer-events-auto relative">
       <div class="flex justify-between items-center h-[80px] px-4 xl:px-8">
 
         <!-- Logo -->
@@ -57,7 +57,7 @@
         </div>
 
         <!-- Desktop Menu -->
-        <div class="hidden 2xl:flex items-center justify-center flex-1">
+        <div class="hidden xl:flex items-center justify-center flex-1">
           <div class="flex items-center gap-0.5 xl:gap-1">
 
             <!-- Home Dropdown -->
@@ -77,11 +77,11 @@
 
             <!-- Standard Links -->
             <a href="about.html" class="text-[9px] xl:text-[10px] uppercase tracking-[0.15em] font-bold text-gray-800 dark:text-gray-200 hover:text-teal-primary dark:hover:text-teal-primary transition-colors whitespace-nowrap px-1.5 xl:px-2 py-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800">About</a>
+            <a href="student-portal.html" class="text-[9px] xl:text-[10px] uppercase tracking-[0.15em] font-bold text-gray-800 dark:text-gray-200 hover:text-teal-primary dark:hover:text-teal-primary transition-colors whitespace-nowrap px-1.5 xl:px-2 py-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800">Student Portal</a>
             
-            <!-- STUDENT PORTAL is active state -->
-            <a href="student-portal.html" class="text-[9px] xl:text-[10px] uppercase tracking-[0.15em] font-bold text-teal-primary dark:text-teal-primary transition-colors whitespace-nowrap px-1.5 xl:px-2 py-2 rounded-full bg-gray-50 dark:bg-gray-800">Student Portal</a>
-            
+            <!-- CURRICULUM is active state -->
             <a href="curriculum.html" class="text-[9px] xl:text-[10px] uppercase tracking-[0.15em] font-bold text-gray-800 dark:text-gray-200 hover:text-teal-primary dark:hover:text-teal-primary transition-colors whitespace-nowrap px-1.5 xl:px-2 py-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800">Curriculum</a>
+            
             <a href="workshops.html" class="text-[9px] xl:text-[10px] uppercase tracking-[0.15em] font-bold text-gray-800 dark:text-gray-200 hover:text-teal-primary dark:hover:text-teal-primary transition-colors whitespace-nowrap px-1.5 xl:px-2 py-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800">Workshops</a>
             <a href="instructors.html" class="text-[9px] xl:text-[10px] uppercase tracking-[0.15em] font-bold text-gray-800 dark:text-gray-200 hover:text-teal-primary dark:hover:text-teal-primary transition-colors whitespace-nowrap px-1.5 xl:px-2 py-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800">Instructors</a>
             <a href="pricing.html" class="text-[9px] xl:text-[10px] uppercase tracking-[0.15em] font-bold text-gray-800 dark:text-gray-200 hover:text-teal-primary dark:hover:text-teal-primary transition-colors whitespace-nowrap px-1.5 xl:px-2 py-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800">Pricing</a>
@@ -106,7 +106,7 @@
         </div>
 
         <!-- Desktop Actions & Toggles -->
-        <div class="hidden 2xl:flex items-center gap-1.5 xl:gap-3 flex-shrink-0">
+        <div class="hidden xl:flex items-center gap-1.5 xl:gap-3 flex-shrink-0">
           <a href="login.html" class="border border-teal-primary text-teal-primary dark:text-white dark:border-gray-600 hover:bg-teal-primary hover:text-white dark:hover:bg-teal-primary px-4 xl:px-5 py-2 xl:py-2.5 rounded-full text-[9px] xl:text-[10px] uppercase tracking-wider font-bold transition-all duration-300">Login</a>
           <a href="register.html" class="bg-teal-primary text-white hover:bg-orange-secondary dark:hover:bg-orange-secondary px-4 xl:px-5 py-2 xl:py-2.5 rounded-full text-[9px] xl:text-[10px] uppercase tracking-wider font-bold transition-all duration-300">
             Register
@@ -132,7 +132,7 @@
         </div>
 
         <!-- Mobile Menu Button & Toggles -->
-        <div class="2xl:hidden flex items-center gap-2 sm:gap-3">
+        <div class="xl:hidden flex items-center gap-2 sm:gap-3">
           <!-- Theme Toggle -->
           <button id="mobile-theme-toggle" class="relative w-[56px] h-[26px] flex items-center bg-gray-200 dark:bg-gray-700 rounded-full p-1 transition-colors duration-300 focus:outline-none border border-gray-300 dark:border-gray-600 overflow-hidden" title="Toggle Theme">
             <span class="text-[7px] font-bold text-gray-500 absolute end-2.5 dark:opacity-0 transition-opacity duration-300 tracking-wider">LGT</span>
@@ -163,7 +163,7 @@
       </div>
 
       <!-- Mobile Menu Dropdown -->
-      <div id="mobile-menu" class="hidden 2xl:hidden absolute top-[90px] left-0 right-0 bg-light-bg dark:bg-dark-surface border border-gray-200 dark:border-gray-700 shadow-2xl rounded-2xl transition-colors duration-300 overflow-hidden">
+      <div id="mobile-menu" class="hidden xl:hidden absolute top-[90px] left-0 right-0 bg-light-bg dark:bg-dark-surface border border-gray-200 dark:border-gray-700 shadow-2xl rounded-2xl transition-colors duration-300 overflow-hidden">
         <div class="px-6 pt-4 pb-8 flex flex-col gap-0 max-h-[calc(100vh-120px)] overflow-y-auto hide-scroll">
 
           <!-- Mobile Home Dropdown -->
@@ -180,7 +180,7 @@
 
           <!-- Mobile Links -->
           <a href="about.html" class="block py-4 border-b border-gray-200 dark:border-gray-700 text-gray-800 dark:text-gray-200 hover:text-teal-primary transition duration-300 text-xs uppercase tracking-widest font-bold">About</a>
-          <a href="student-portal.html" class="block py-4 border-b border-gray-200 dark:border-gray-700 text-teal-primary dark:text-teal-primary text-xs uppercase tracking-widest font-bold">Student Portal</a>
+          <a href="student-portal.html" class="block py-4 border-b border-gray-200 dark:border-gray-700 text-gray-800 dark:text-gray-200 hover:text-teal-primary transition duration-300 text-xs uppercase tracking-widest font-bold">Student Portal</a>
           <a href="curriculum.html" class="block py-4 border-b border-gray-200 dark:border-gray-700 text-gray-800 dark:text-gray-200 hover:text-teal-primary transition duration-300 text-xs uppercase tracking-widest font-bold">Curriculum</a>
           <a href="workshops.html" class="block py-4 border-b border-gray-200 dark:border-gray-700 text-gray-800 dark:text-gray-200 hover:text-teal-primary transition duration-300 text-xs uppercase tracking-widest font-bold">Workshops</a>
           <a href="instructors.html" class="block py-4 border-b border-gray-200 dark:border-gray-700 text-gray-800 dark:text-gray-200 hover:text-teal-primary transition duration-300 text-xs uppercase tracking-widest font-bold">Instructors</a>
@@ -221,15 +221,15 @@
       <!-- Background Image: highly visible and fit to the viewport container -->
       <div class="absolute inset-0 bg-[url('assets/portal-hero-bg.jpg')] bg-cover bg-center opacity-85 z-0"></div>
       <!-- Dark Tint Overlay to ensure text readability -->
-      <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/60 to-slate-950/40 z-0"></div>
+      <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/80 to-slate-950/60 z-0"></div>
       
       <div class="max-w-7xl mx-auto px-4 relative z-20 w-full text-center">
-        <div class="animate-fade-in max-w-2xl mx-auto">
+        <div class="animate-fade-in max-w-2xl mx-auto drop-shadow-2xl">
           <div class="inline-flex items-center justify-center w-20 h-20 bg-white/10 backdrop-blur-md rounded-full mb-6 text-white text-3xl border border-white/20">
             <i class="fas fa-user-graduate"></i>
           </div>
           <h1 class="text-4xl md:text-5xl font-bold leading-tight tracking-tight text-white mb-4">
-            WELCOME TO THE <span class="text-orange-secondary">STUDENT PORTAL</span>
+            WELCOME TO THE <span class="text-orange-400">STUDENT PORTAL</span>
           </h1>
           <div class="w-24 h-1 bg-orange-secondary mx-auto rounded-full mb-6"></div>
           <p class="text-lg text-gray-200 leading-relaxed font-medium max-w-2xl mx-auto">
@@ -239,196 +239,186 @@
       </div>
     </section>
 
-    <!-- SECTION 2: Portal Quick Access Grid -->
-    <section class="py-16 bg-light-surface dark:bg-dark-surface border-b border-gray-200 dark:border-gray-800 transition-colors duration-300 relative z-20">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          <!-- Card 1 -->
-          <div class="bg-white dark:bg-dark-bg border border-gray-200 dark:border-gray-700 p-8 rounded-3xl shadow-xl hover:-translate-y-2 transition-transform duration-300 group text-center">
-            <i class="fas fa-calendar-check text-4xl text-teal-primary mb-4 group-hover:text-orange-secondary transition-colors"></i>
-            <h3 class="text-lg font-bold text-gray-900 dark:text-white uppercase mb-2">Track Attendance</h3>
-            <p class="text-gray-600 dark:text-gray-400 text-sm">Monitor your class attendance records.</p>
-          </div>
-          <!-- Card 2 -->
-          <div class="bg-white dark:bg-dark-bg border border-gray-200 dark:border-gray-700 p-8 rounded-3xl shadow-xl hover:-translate-y-2 transition-transform duration-300 group text-center">
-            <i class="fas fa-headphones text-4xl text-orange-secondary mb-4 group-hover:text-teal-primary transition-colors"></i>
-            <h3 class="text-lg font-bold text-gray-900 dark:text-white uppercase mb-2">Practice Files</h3>
-            <p class="text-gray-600 dark:text-gray-400 text-sm">Download homework/audio practice files.</p>
-          </div>
-          <!-- Card 3 -->
-          <div class="bg-white dark:bg-dark-bg border border-gray-200 dark:border-gray-700 p-8 rounded-3xl shadow-xl hover:-translate-y-2 transition-transform duration-300 group text-center">
-            <i class="fas fa-clipboard-list text-4xl text-teal-primary mb-4 group-hover:text-orange-secondary transition-colors"></i>
-            <h3 class="text-lg font-bold text-gray-900 dark:text-white uppercase mb-2">Placement Exams</h3>
-            <p class="text-gray-600 dark:text-gray-400 text-sm">Complete your level placement exams.</p>
-          </div>
-          <!-- Card 4 -->
-          <div class="bg-white dark:bg-dark-bg border border-gray-200 dark:border-gray-700 p-8 rounded-3xl shadow-xl hover:-translate-y-2 transition-transform duration-300 group text-center">
-            <i class="fas fa-book-open text-4xl text-orange-secondary mb-4 group-hover:text-teal-primary transition-colors"></i>
-            <h3 class="text-lg font-bold text-gray-900 dark:text-white uppercase mb-2">Grade Books</h3>
-            <p class="text-gray-600 dark:text-gray-400 text-sm">View digital course grade books.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- SECTION 3: Class Attendance Tracker -->
-    <section class="py-24 bg-light-bg dark:bg-dark-bg border-b border-gray-200 dark:border-gray-800 transition-colors duration-300">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid lg:grid-cols-2 gap-16 items-center">
-          <div>
-            <p class="text-orange-secondary uppercase tracking-[0.2em] text-xs font-bold mb-4">Stay Consistent</p>
-            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white uppercase tracking-tight mb-6">
+    
+    <!-- PORTAL FEATURES ZIG-ZAG SHOWCASE -->
+    <section class="py-24 bg-light-surface dark:bg-dark-bg border-b border-gray-200 dark:border-gray-800 transition-colors duration-300 overflow-hidden relative">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        
+        <!-- Feature 1: Track Attendance (Image Right) -->
+        <div class="flex flex-col lg:flex-row items-center gap-16 mb-32">
+          <div class="w-full lg:w-1/2 order-2 lg:order-1">
+            <div class="inline-flex items-center gap-2 text-teal-primary font-bold uppercase tracking-widest text-xs mb-4">
+              <i class="fas fa-calendar-check text-lg"></i> Stay Consistent
+            </div>
+            <h2 class="text-3xl md:text-5xl font-bold text-gray-900 dark:text-white uppercase tracking-tight mb-6">
               Track <span class="text-teal-primary">Attendance</span>
             </h2>
-            <p class="text-gray-600 dark:text-gray-400 mb-8 font-medium leading-relaxed">
+            <p class="text-gray-600 dark:text-gray-400 mb-8 font-medium leading-relaxed text-lg">
               Consistency is key to language acquisition. Easily track your class attendance records visually to ensure you meet the requirements for your chosen A1-C2 pathway.
             </p>
             <a href="user-dashboard.html" class="inline-flex items-center text-teal-primary font-bold uppercase text-xs tracking-widest hover:text-orange-secondary transition-colors">
               View My Attendance Log <i class="fas fa-arrow-right ms-2"></i>
             </a>
           </div>
-
-          <!-- Mock Attendance UI -->
-          <div class="bg-white dark:bg-dark-surface border border-gray-200 dark:border-gray-700 rounded-3xl p-8 shadow-2xl">
-            <div class="flex justify-between items-center mb-6">
-              <h4 class="font-bold text-gray-900 dark:text-white uppercase tracking-wider text-sm">Current Month: June</h4>
-              <span class="text-teal-primary font-bold">92% Attendance</span>
-            </div>
-            <!-- Calendar Grid Mockup -->
-            <div class="grid grid-cols-7 gap-2 text-center text-xs font-bold mb-2 text-gray-500">
-              <div>M</div><div>T</div><div>W</div><div>T</div><div>F</div><div>S</div><div>S</div>
-            </div>
-            <div class="grid grid-cols-7 gap-2">
-              <div class="aspect-square rounded-lg bg-teal-primary/20 flex items-center justify-center text-teal-primary font-bold"><i class="fas fa-check"></i></div>
-              <div class="aspect-square rounded-lg bg-teal-primary/20 flex items-center justify-center text-teal-primary font-bold"><i class="fas fa-check"></i></div>
-              <div class="aspect-square rounded-lg bg-orange-secondary/20 flex items-center justify-center text-orange-secondary font-bold"><i class="fas fa-times"></i></div>
-              <div class="aspect-square rounded-lg bg-teal-primary/20 flex items-center justify-center text-teal-primary font-bold"><i class="fas fa-check"></i></div>
-              <div class="aspect-square rounded-lg bg-teal-primary/20 flex items-center justify-center text-teal-primary font-bold"><i class="fas fa-check"></i></div>
-              <div class="aspect-square rounded-lg bg-gray-100 dark:bg-gray-800"></div>
-              <div class="aspect-square rounded-lg bg-gray-100 dark:bg-gray-800"></div>
-              
-              <div class="aspect-square rounded-lg bg-teal-primary flex items-center justify-center text-white font-bold shadow-lg shadow-teal-primary/40"><i class="fas fa-check"></i></div>
-              <div class="aspect-square rounded-lg border-2 border-dashed border-gray-300 dark:border-gray-600"></div>
-              <div class="aspect-square rounded-lg border-2 border-dashed border-gray-300 dark:border-gray-600"></div>
-              <div class="aspect-square rounded-lg border-2 border-dashed border-gray-300 dark:border-gray-600"></div>
-              <div class="aspect-square rounded-lg border-2 border-dashed border-gray-300 dark:border-gray-600"></div>
-              <div class="aspect-square rounded-lg bg-gray-100 dark:bg-gray-800"></div>
-              <div class="aspect-square rounded-lg bg-gray-100 dark:bg-gray-800"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- SECTION 4: Practice Files & Audio -->
-    <section class="py-24 bg-light-surface dark:bg-dark-surface border-b border-gray-200 dark:border-gray-800 transition-colors duration-300">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-16">
-          <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white uppercase tracking-tight mb-4">
-            Practice <span class="text-orange-secondary">Resources</span>
-          </h2>
-          <div class="w-24 h-1 bg-teal-primary mx-auto rounded-full mb-6"></div>
-          <p class="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">Download homework/audio practice files to refine your pronunciation and reinforce grammar structures outside of class hours.</p>
-        </div>
-
-        <div class="grid md:grid-cols-2 gap-8">
-          <!-- Audio Practice -->
-          <div class="bg-white dark:bg-dark-bg border border-gray-200 dark:border-gray-700 rounded-3xl p-8 flex items-center gap-6 shadow-md hover:border-orange-secondary transition-colors group">
-            <div class="w-16 h-16 bg-orange-secondary/10 rounded-full flex items-center justify-center flex-shrink-0 text-orange-secondary group-hover:scale-110 transition-transform">
-              <i class="fas fa-microphone-alt text-2xl"></i>
-            </div>
-            <div class="flex-grow">
-              <h4 class="font-bold text-gray-900 dark:text-white uppercase mb-1">Audio Pronunciation</h4>
-              <p class="text-xs text-gray-500 dark:text-gray-400 mb-3">Native speaker dialogue files</p>
-              <div class="w-full bg-gray-200 dark:bg-gray-800 rounded-full h-1.5 mb-2">
-                <div class="bg-orange-secondary h-1.5 rounded-full" style="width: 45%"></div>
-              </div>
-            </div>
-            <button class="w-10 h-10 border border-orange-secondary text-orange-secondary hover:bg-orange-secondary hover:text-white rounded-full flex items-center justify-center transition-colors">
-              <i class="fas fa-download"></i>
-            </button>
-          </div>
-
-          <!-- Homework PDF -->
-          <div class="bg-white dark:bg-dark-bg border border-gray-200 dark:border-gray-700 rounded-3xl p-8 flex items-center gap-6 shadow-md hover:border-teal-primary transition-colors group">
-            <div class="w-16 h-16 bg-teal-primary/10 rounded-full flex items-center justify-center flex-shrink-0 text-teal-primary group-hover:scale-110 transition-transform">
-              <i class="fas fa-file-pdf text-2xl"></i>
-            </div>
-            <div class="flex-grow">
-              <h4 class="font-bold text-gray-900 dark:text-white uppercase mb-1">Weekly Homework</h4>
-              <p class="text-xs text-gray-500 dark:text-gray-400 mb-2">Grammar & cultural context exercises</p>
-              <span class="text-[10px] font-bold text-teal-primary uppercase tracking-wider bg-teal-primary/10 px-2 py-1 rounded">2.4 MB</span>
-            </div>
-            <button class="w-10 h-10 border border-teal-primary text-teal-primary hover:bg-teal-primary hover:text-white rounded-full flex items-center justify-center transition-colors">
-              <i class="fas fa-download"></i>
-            </button>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- SECTION 5: Assessments & Grade Books -->
-    <section class="py-24 bg-light-bg dark:bg-dark-bg border-b border-gray-200 dark:border-gray-800 transition-colors duration-300 relative">
-      <div class="absolute left-0 top-1/2 transform -translate-y-1/2 w-64 h-64 bg-teal-primary/5 dark:bg-teal-primary/10 rounded-full blur-3xl -z-10"></div>
-      
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid lg:grid-cols-2 gap-16 items-center">
           
-          <!-- Grade Book Mockup -->
-          <div class="order-2 lg:order-1 bg-white dark:bg-dark-surface border border-gray-200 dark:border-gray-700 rounded-3xl shadow-xl overflow-hidden">
-            <div class="bg-teal-primary px-6 py-4 flex justify-between items-center">
-              <h4 class="font-bold text-white uppercase tracking-wider text-sm">Digital Grade Book</h4>
-              <span class="bg-white/20 text-white text-xs px-2 py-1 rounded font-bold">B2 Level</span>
+          <div class="w-full lg:w-1/2 order-1 lg:order-2">
+            <!-- Mock Attendance UI -->
+            <div class="bg-white dark:bg-dark-surface border border-gray-200 dark:border-gray-700 rounded-[2rem] p-8 shadow-2xl relative transform hover:-translate-y-2 transition-transform duration-500">
+              <div class="absolute -top-6 -right-6 w-24 h-24 bg-teal-primary/10 rounded-full blur-2xl"></div>
+              <div class="flex justify-between items-center mb-6 border-b border-gray-100 dark:border-gray-800 pb-4">
+                <h4 class="font-bold text-gray-900 dark:text-white uppercase tracking-wider text-sm">Current Month: June</h4>
+                <span class="bg-teal-primary/10 text-teal-primary px-3 py-1 rounded-full font-bold text-xs">92% Attendance</span>
+              </div>
+              <div class="grid grid-cols-7 gap-3 text-center text-xs font-bold mb-3 text-gray-400">
+                <div>M</div><div>T</div><div>W</div><div>T</div><div>F</div><div>S</div><div>S</div>
+              </div>
+              <div class="grid grid-cols-7 gap-3">
+                <div class="aspect-square rounded-xl bg-teal-primary/20 flex items-center justify-center text-teal-primary font-bold"><i class="fas fa-check"></i></div>
+                <div class="aspect-square rounded-xl bg-teal-primary/20 flex items-center justify-center text-teal-primary font-bold"><i class="fas fa-check"></i></div>
+                <div class="aspect-square rounded-xl bg-orange-secondary/20 flex items-center justify-center text-orange-secondary font-bold"><i class="fas fa-times"></i></div>
+                <div class="aspect-square rounded-xl bg-teal-primary/20 flex items-center justify-center text-teal-primary font-bold"><i class="fas fa-check"></i></div>
+                <div class="aspect-square rounded-xl bg-teal-primary/20 flex items-center justify-center text-teal-primary font-bold"><i class="fas fa-check"></i></div>
+                <div class="aspect-square rounded-xl bg-gray-50 dark:bg-gray-800/50"></div>
+                <div class="aspect-square rounded-xl bg-gray-50 dark:bg-gray-800/50"></div>
+                
+                <div class="aspect-square rounded-xl bg-teal-primary flex items-center justify-center text-white font-bold shadow-lg shadow-teal-primary/40"><i class="fas fa-check"></i></div>
+                <div class="aspect-square rounded-xl border-2 border-dashed border-gray-200 dark:border-gray-700"></div>
+                <div class="aspect-square rounded-xl border-2 border-dashed border-gray-200 dark:border-gray-700"></div>
+                <div class="aspect-square rounded-xl border-2 border-dashed border-gray-200 dark:border-gray-700"></div>
+                <div class="aspect-square rounded-xl border-2 border-dashed border-gray-200 dark:border-gray-700"></div>
+                <div class="aspect-square rounded-xl bg-gray-50 dark:bg-gray-800/50"></div>
+                <div class="aspect-square rounded-xl bg-gray-50 dark:bg-gray-800/50"></div>
+              </div>
             </div>
-            <div class="p-6">
-              <div class="space-y-4">
-                <div class="flex justify-between items-center border-b border-gray-100 dark:border-gray-800 pb-3">
-                  <div>
-                    <p class="text-sm font-bold text-gray-900 dark:text-white">Cultural Presentation</p>
-                    <p class="text-xs text-gray-500 dark:text-gray-400">Oral Assessment</p>
-                  </div>
-                  <span class="text-lg font-bold text-teal-primary">94%</span>
+          </div>
+        </div>
+
+        <!-- Feature 2: Practice Resources (Image Left) -->
+        <div class="flex flex-col lg:flex-row items-center gap-16 mb-32">
+          <div class="w-full lg:w-1/2">
+            <div class="grid gap-6">
+              <div class="bg-white dark:bg-dark-surface border border-gray-200 dark:border-gray-700 rounded-[2rem] p-8 flex items-center gap-6 shadow-xl hover:-translate-x-2 transition-transform duration-500">
+                <div class="w-20 h-20 bg-orange-secondary/10 rounded-2xl flex items-center justify-center shrink-0 text-orange-secondary">
+                  <i class="fas fa-microphone-alt text-3xl"></i>
                 </div>
-                <div class="flex justify-between items-center border-b border-gray-100 dark:border-gray-800 pb-3">
-                  <div>
-                    <p class="text-sm font-bold text-gray-900 dark:text-white">Grammar Mid-term</p>
-                    <p class="text-xs text-gray-500 dark:text-gray-400">Written Exam</p>
+                <div class="flex-grow">
+                  <h4 class="font-bold text-gray-900 dark:text-white uppercase mb-2 text-lg">Audio Pronunciation</h4>
+                  <p class="text-sm text-gray-500 dark:text-gray-400 mb-3">Native speaker dialogue files</p>
+                  <div class="flex gap-2">
+                    <span class="px-2 py-1 bg-gray-100 dark:bg-gray-800 rounded text-[10px] font-bold text-gray-600 dark:text-gray-300 uppercase">MP3</span>
+                    <span class="px-2 py-1 bg-gray-100 dark:bg-gray-800 rounded text-[10px] font-bold text-gray-600 dark:text-gray-300 uppercase">12 MB</span>
                   </div>
-                  <span class="text-lg font-bold text-orange-secondary">88%</span>
                 </div>
-                <div class="flex justify-between items-center">
-                  <div>
-                    <p class="text-sm font-bold text-gray-900 dark:text-white">Vocabulary Quiz 4</p>
-                    <p class="text-xs text-gray-500 dark:text-gray-400">Digital Quiz</p>
+              </div>
+
+              <div class="bg-white dark:bg-dark-surface border border-gray-200 dark:border-gray-700 rounded-[2rem] p-8 flex items-center gap-6 shadow-xl hover:translate-x-2 transition-transform duration-500 lg:ml-12">
+                <div class="w-20 h-20 bg-teal-primary/10 rounded-2xl flex items-center justify-center shrink-0 text-teal-primary">
+                  <i class="fas fa-file-pdf text-3xl"></i>
+                </div>
+                <div class="flex-grow">
+                  <h4 class="font-bold text-gray-900 dark:text-white uppercase mb-2 text-lg">Weekly Homework</h4>
+                  <p class="text-sm text-gray-500 dark:text-gray-400 mb-3">Grammar & cultural context</p>
+                  <div class="flex gap-2">
+                    <span class="px-2 py-1 bg-gray-100 dark:bg-gray-800 rounded text-[10px] font-bold text-gray-600 dark:text-gray-300 uppercase">PDF</span>
+                    <span class="px-2 py-1 bg-gray-100 dark:bg-gray-800 rounded text-[10px] font-bold text-gray-600 dark:text-gray-300 uppercase">2.4 MB</span>
                   </div>
-                  <span class="text-lg font-bold text-teal-primary">100%</span>
                 </div>
               </div>
             </div>
           </div>
 
-          <div class="order-1 lg:order-2">
-            <p class="text-teal-primary uppercase tracking-[0.2em] text-xs font-bold mb-4">Academic Progress</p>
-            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white uppercase tracking-tight mb-6">
-              Grades & <span class="text-orange-secondary">Exams</span>
+          <div class="w-full lg:w-1/2 lg:pl-10">
+            <div class="inline-flex items-center gap-2 text-orange-secondary font-bold uppercase tracking-widest text-xs mb-4">
+              <i class="fas fa-headphones text-lg"></i> Download & Learn
+            </div>
+            <h2 class="text-3xl md:text-5xl font-bold text-gray-900 dark:text-white uppercase tracking-tight mb-6">
+              Practice <span class="text-orange-secondary">Resources</span>
             </h2>
-            <p class="text-gray-600 dark:text-gray-400 mb-8 font-medium leading-relaxed">
+            <p class="text-gray-600 dark:text-gray-400 mb-8 font-medium leading-relaxed text-lg">
+              Refine your pronunciation and reinforce grammar structures outside of class hours. Your portal provides exclusive access to an extensive library of downloadable materials curated by native speakers.
+            </p>
+            <a href="user-dashboard.html" class="inline-flex items-center text-orange-secondary font-bold uppercase text-xs tracking-widest hover:text-teal-primary transition-colors">
+              Access Resource Library <i class="fas fa-arrow-right ms-2"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Feature 3: Digital Grade Book (Image Right) -->
+        <div class="flex flex-col lg:flex-row items-center gap-16">
+          <div class="w-full lg:w-1/2 order-2 lg:order-1">
+            <div class="inline-flex items-center gap-2 text-teal-primary font-bold uppercase tracking-widest text-xs mb-4">
+              <i class="fas fa-graduation-cap text-lg"></i> Academic Progress
+            </div>
+            <h2 class="text-3xl md:text-5xl font-bold text-gray-900 dark:text-white uppercase tracking-tight mb-6">
+              Grades & <span class="text-teal-primary">Exams</span>
+            </h2>
+            <p class="text-gray-600 dark:text-gray-400 mb-8 font-medium leading-relaxed text-lg">
               We provide full transparency into your academic standing. View digital course grade books directly on your dashboard. Ready to advance? You can complete level placement exams right here to unlock the next stage of your curriculum.
             </p>
             <div class="flex flex-wrap gap-4">
               <a href="user-dashboard.html" class="px-8 py-4 bg-teal-primary text-white hover:bg-orange-secondary font-bold uppercase tracking-widest text-xs transition-colors duration-300 rounded-full shadow-lg">
                 Enter Student Portal
               </a>
-              <a href="user-dashboard.html" class="px-8 py-4 border-2 border-orange-secondary text-orange-secondary hover:bg-orange-secondary hover:text-white font-bold uppercase tracking-widest text-xs transition-colors duration-300 rounded-full">
-                Take Placement Exam
-              </a>
             </div>
           </div>
-
+          
+          <div class="w-full lg:w-1/2 order-1 lg:order-2">
+            <!-- Grade Book Mockup -->
+            <div class="bg-white dark:bg-dark-surface border border-gray-200 dark:border-gray-700 rounded-[2rem] shadow-2xl overflow-hidden relative transform hover:-translate-y-2 transition-transform duration-500">
+              <div class="bg-slate-900 px-8 py-6 flex justify-between items-center relative overflow-hidden">
+                <div class="absolute inset-0 bg-gradient-to-r from-teal-900 to-slate-900 opacity-50"></div>
+                <div class="relative z-10 flex items-center gap-4">
+                  <div class="w-12 h-12 bg-teal-primary rounded-full flex items-center justify-center text-white text-xl shadow-lg shadow-teal-primary/30">
+                    <i class="fas fa-book"></i>
+                  </div>
+                  <div>
+                    <h4 class="font-bold text-white uppercase tracking-wider text-sm mb-1">Digital Grade Book</h4>
+                    <span class="text-teal-400 text-xs uppercase tracking-widest font-bold">Fall Semester</span>
+                  </div>
+                </div>
+                <span class="bg-white/10 backdrop-blur border border-white/20 text-white text-xs px-4 py-2 rounded-full font-bold relative z-10">B2 Level</span>
+              </div>
+              <div class="p-8">
+                <div class="space-y-6">
+                  <div class="flex justify-between items-center border-b border-gray-100 dark:border-gray-800 pb-5">
+                    <div class="flex items-center gap-4">
+                      <div class="w-10 h-10 rounded-lg bg-teal-primary/10 flex items-center justify-center text-teal-primary"><i class="fas fa-users"></i></div>
+                      <div>
+                        <p class="text-base font-bold text-gray-900 dark:text-white">Cultural Presentation</p>
+                        <p class="text-xs text-gray-500 dark:text-gray-400 font-medium">Oral Assessment</p>
+                      </div>
+                    </div>
+                    <span class="text-xl font-bold text-teal-primary">94%</span>
+                  </div>
+                  <div class="flex justify-between items-center border-b border-gray-100 dark:border-gray-800 pb-5">
+                    <div class="flex items-center gap-4">
+                      <div class="w-10 h-10 rounded-lg bg-orange-secondary/10 flex items-center justify-center text-orange-secondary"><i class="fas fa-pen-nib"></i></div>
+                      <div>
+                        <p class="text-base font-bold text-gray-900 dark:text-white">Grammar Mid-term</p>
+                        <p class="text-xs text-gray-500 dark:text-gray-400 font-medium">Written Exam</p>
+                      </div>
+                    </div>
+                    <span class="text-xl font-bold text-orange-secondary">88%</span>
+                  </div>
+                  <div class="flex justify-between items-center">
+                    <div class="flex items-center gap-4">
+                      <div class="w-10 h-10 rounded-lg bg-teal-primary/10 flex items-center justify-center text-teal-primary"><i class="fas fa-laptop-code"></i></div>
+                      <div>
+                        <p class="text-base font-bold text-gray-900 dark:text-white">Vocabulary Quiz 4</p>
+                        <p class="text-xs text-gray-500 dark:text-gray-400 font-medium">Digital Quiz</p>
+                      </div>
+                    </div>
+                    <span class="text-xl font-bold text-teal-primary">100%</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+
       </div>
     </section>
-
+    
     <!-- SECTION 6: Support / Contact CTA -->
     <section class="py-24 bg-light-surface dark:bg-dark-surface transition-colors duration-300">
       <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -507,7 +497,7 @@
               <span class="text-sm text-gray-400 font-bold uppercase tracking-wide leading-relaxed">442 Global Avenue, Metropolis City</span>
             </li>
             <li class="flex items-center">
-              <i class="fas fa-phone text-orange-secondary me-4 text-base"></i>
+              <i class="fas fa-phone text-teal-primary me-4 text-base"></i>
               <a href="tel:+15559876543" class="text-sm text-gray-400 hover:text-white transition-colors font-bold uppercase tracking-wider">+1 (555) 987-6543</a>
             </li>
             <li class="flex items-center">
@@ -613,6 +603,65 @@
 
     setupMobileDropdown('mobile-home-dropdown', 'mobile-home-menu', 'mobile-home-icon');
     setupMobileDropdown('mobile-dash-dropdown', 'mobile-dash-menu', 'mobile-dash-icon');
+  
+    
+  
+    // Active Page Detection
+    document.addEventListener('DOMContentLoaded', () => {
+      // Get the absolute URL without hashes or query parameters
+      let currentUrl = window.location.href.split('#')[0].split('?')[0];
+      
+      // If the URL ends with a slash (e.g. directory root), assume index.html
+      if (currentUrl.endsWith('/')) {
+          currentUrl += 'index.html';
+      }
+
+      // Desktop Nav Detection
+      // Using a simpler selector to avoid issues with escaped colons
+      const desktopNavContainer = document.querySelector('.hidden.xl\\:flex');
+      if (desktopNavContainer) {
+          const desktopLinks = desktopNavContainer.querySelectorAll('a[href]');
+          desktopLinks.forEach(link => {
+              if (link.href.split('#')[0].split('?')[0] === currentUrl) {
+                  // Remove normal classes
+                  link.classList.remove('text-gray-800', 'dark:text-gray-200', 'hover:bg-gray-100', 'dark:hover:bg-gray-800', 'hover:text-teal-primary', 'dark:hover:text-teal-primary');
+                  // Add active classes
+                  link.classList.add('text-teal-primary', 'dark:text-teal-primary', 'bg-gray-50', 'dark:bg-gray-800');
+                  
+                  // If it's inside a dropdown (like Home or Dashboard)
+                  const parentDropdownBtn = link.closest('.group')?.querySelector('a');
+                  if (parentDropdownBtn && parentDropdownBtn !== link) {
+                      parentDropdownBtn.classList.remove('text-gray-800', 'dark:text-gray-200');
+                      parentDropdownBtn.classList.add('text-teal-primary', 'dark:text-teal-primary');
+                  }
+              }
+          });
+      }
+
+      // Mobile Nav Detection
+      const mobileNavContainer = document.getElementById('mobile-menu');
+      if (mobileNavContainer) {
+          const mobileLinks = mobileNavContainer.querySelectorAll('a[href]');
+          mobileLinks.forEach(link => {
+              if (link.href.split('#')[0].split('?')[0] === currentUrl) {
+                  // Remove normal classes
+                  link.classList.remove('text-gray-800', 'dark:text-gray-200');
+                  // Add active classes
+                  link.classList.add('text-teal-primary', 'dark:text-teal-primary');
+                  
+                  // If it's inside a dropdown
+                  const parentDropdownContainer = link.closest('.flex-col');
+                  if (parentDropdownContainer) {
+                      const parentDropdownBtn = parentDropdownContainer.parentElement.querySelector('button');
+                      if (parentDropdownBtn) {
+                          parentDropdownBtn.classList.remove('text-gray-800', 'dark:text-gray-200');
+                          parentDropdownBtn.classList.add('text-teal-primary', 'dark:text-teal-primary');
+                      }
+                  }
+              }
+          });
+      }
+    });
   </script>
 </body>
 </html>

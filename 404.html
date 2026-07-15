@@ -10,76 +10,144 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
   <script>
-    tailwind.config = { 
-      darkMode: 'class',
-      theme: {
-        extend: {
-          colors: {
-            'teal-primary': '#0F766E', 
-            'orange-secondary': '#EA580C',
-            'light-bg': '#FFFFFF',
-            'light-surface': '#F8FAFC',
-            'dark-bg': '#0F172A',
-            'dark-surface': '#1E293B'
-          },
-          animation: {
-            'gradient-x': 'gradient-x 3s ease infinite',
-          },
-          keyframes: {
-            'gradient-x': {
-              '0%, 100%': { 'background-size': '200% 200%', 'background-position': 'left center' },
-              '50%': { 'background-size': '200% 200%', 'background-position': 'right center' },
-            }
-          }
-        }
+    // Theme Toggle Functionality
+    const themeToggle = document.getElementById('theme-toggle');
+    const mobileThemeToggle = document.getElementById('mobile-theme-toggle');
+    const html = document.documentElement;
+
+    function toggleTheme() {
+      if (html.classList.contains('dark')) {
+        html.classList.remove('dark');
+        localStorage.setItem('theme', 'light');
+      } else {
+        html.classList.add('dark');
+        localStorage.setItem('theme', 'dark');
       }
     }
-  </script>
 
-  <style>
-    [dir="rtl"] { direction: rtl; }
-    
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
+    if (themeToggle) themeToggle.addEventListener('click', toggleTheme);
+    if (mobileThemeToggle) mobileThemeToggle.addEventListener('click', toggleTheme);
+    if (localStorage.getItem('theme') === 'light') html.classList.remove('dark');
+
+    // RTL Toggle Functionality
+    const rtlToggle = document.getElementById('rtl-toggle');
+    const mobileRtlToggle = document.getElementById('mobile-rtl-toggle');
+
+    function toggleRTL() {
+      if (html.getAttribute('dir') === 'rtl') {
+        html.removeAttribute('dir');
+        localStorage.setItem('direction', 'ltr');
+      } else {
+        html.setAttribute('dir', 'rtl');
+        localStorage.setItem('direction', 'rtl');
+      }
     }
-    .animate-fade-in { animation: fadeInUp 0.8s ease-out; }
 
-    .hide-scroll::-webkit-scrollbar { display: none; }
-    .hide-scroll { -ms-overflow-style: none; scrollbar-width: none; }
-  </style>
-</head>
-<body class="font-sans antialiased transition-colors duration-300 bg-light-bg dark:bg-dark-bg text-gray-800 dark:text-gray-100 flex flex-col min-h-screen relative">
+    if (rtlToggle) rtlToggle.addEventListener('click', toggleRTL);
+    if (mobileRtlToggle) mobileRtlToggle.addEventListener('click', toggleRTL);
+    if (localStorage.getItem('direction') === 'rtl') html.setAttribute('dir', 'rtl');
 
-  <main class="flex-grow flex items-center justify-center relative overflow-hidden pt-[120px] pb-24">
+    // Mobile Menu Toggle
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const menuIcon = document.getElementById('menu-icon');
+    const closeIcon = document.getElementById('close-icon');
+
+    mobileMenuButton.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+      menuIcon.classList.toggle('hidden');
+      closeIcon.classList.toggle('hidden');
+      if (!mobileMenu.classList.contains('hidden')) {
+          mobileMenu.classList.add('flex');
+      } else {
+          mobileMenu.classList.remove('flex');
+      }
+    });
+
+    // Mobile Dropdown Functionality
+    function setupMobileDropdown(dropdownId, menuId, iconId) {
+      const dropdownBtn = document.getElementById(dropdownId);   
+      const menu = document.getElementById(menuId);
+      const icon = document.getElementById(iconId);
+      
+      if(dropdownBtn && menu && icon) {
+        dropdownBtn.addEventListener('click', (e) => {
+          e.preventDefault(); 
+          menu.classList.toggle('hidden');
+          if(menu.classList.contains('hidden')) {
+            icon.classList.remove('fa-minus');
+            icon.classList.add('fa-plus');
+            menu.classList.remove('flex');
+          } else {
+            icon.classList.remove('fa-plus');
+            icon.classList.add('fa-minus');
+            menu.classList.add('flex');
+          }
+        });
+      }
+    }
+
+    setupMobileDropdown('mobile-home-dropdown', 'mobile-home-menu', 'mobile-home-icon');
+    setupMobileDropdown('mobile-dash-dropdown', 'mobile-dash-menu', 'mobile-dash-icon');
+  
     
-    <div class="absolute top-1/4 left-1/4 w-72 h-72 bg-teal-primary/20 dark:bg-teal-primary/10 rounded-full blur-[100px] animate-pulse z-0 pointer-events-none"></div>
-    <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-orange-secondary/20 dark:bg-orange-secondary/10 rounded-full blur-[120px] animate-pulse z-0 pointer-events-none" style="animation-delay: 2s;"></div>
+  
+    // Active Page Detection
+    document.addEventListener('DOMContentLoaded', () => {
+      // Get the absolute URL without hashes or query parameters
+      let currentUrl = window.location.href.split('#')[0].split('?')[0];
+      
+      // If the URL ends with a slash (e.g. directory root), assume index.html
+      if (currentUrl.endsWith('/')) {
+          currentUrl += 'index.html';
+      }
 
-    <div class="container mx-auto px-4 text-center z-10 animate-fade-in relative">
-        
-        <div class="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-light-surface dark:bg-dark-surface border border-gray-200 dark:border-gray-700 font-bold tracking-widest uppercase text-[10px] mb-8 text-gray-800 dark:text-gray-200 shadow-sm">
-            <span class="w-2 h-2 rounded-full bg-orange-secondary animate-ping"></span>
-            Error 404
-        </div>
-        
-        <h1 class="text-[120px] md:text-[200px] font-bold text-transparent bg-clip-text bg-gradient-to-br from-teal-primary via-[#2dd4bf] to-orange-secondary animate-gradient-x leading-none mb-6 drop-shadow-xl tracking-tight">
-            404
-        </h1>
-        
-        <h2 class="text-3xl md:text-5xl font-bold mb-6 leading-tight text-gray-900 dark:text-white uppercase tracking-tight">
-            Out of Bounds!
-        </h2>
-        
-        <p class="text-sm md:text-base text-gray-600 dark:text-gray-400 max-w-lg mx-auto font-medium mb-10 leading-relaxed">
-            Looks like you've jumped a little too high! The page you are looking for has bounced away, changed its name, or is temporarily unavailable.
-        </p>
+      // Desktop Nav Detection
+      // Using a simpler selector to avoid issues with escaped colons
+      const desktopNavContainer = document.querySelector('.hidden.xl\\:flex');
+      if (desktopNavContainer) {
+          const desktopLinks = desktopNavContainer.querySelectorAll('a[href]');
+          desktopLinks.forEach(link => {
+              if (link.href.split('#')[0].split('?')[0] === currentUrl) {
+                  // Remove normal classes
+                  link.classList.remove('text-gray-800', 'dark:text-gray-200', 'hover:bg-gray-100', 'dark:hover:bg-gray-800', 'hover:text-teal-primary', 'dark:hover:text-teal-primary');
+                  // Add active classes
+                  link.classList.add('text-teal-primary', 'dark:text-teal-primary', 'bg-gray-50', 'dark:bg-gray-800');
+                  
+                  // If it's inside a dropdown (like Home or Dashboard)
+                  const parentDropdownBtn = link.closest('.group')?.querySelector('a');
+                  if (parentDropdownBtn && parentDropdownBtn !== link) {
+                      parentDropdownBtn.classList.remove('text-gray-800', 'dark:text-gray-200');
+                      parentDropdownBtn.classList.add('text-teal-primary', 'dark:text-teal-primary');
+                  }
+              }
+          });
+      }
 
-        <a href="index.html" class="inline-flex items-center justify-center gap-3 bg-teal-primary text-white px-10 py-4 rounded-full font-bold uppercase tracking-widest text-xs hover:bg-orange-secondary transition-all duration-300 transform hover:-translate-y-1 shadow-lg shadow-teal-primary/20">
-            <i class="fas fa-home"></i> Return to Home
-        </a>
-    </div>
-  </main>
-
+      // Mobile Nav Detection
+      const mobileNavContainer = document.getElementById('mobile-menu');
+      if (mobileNavContainer) {
+          const mobileLinks = mobileNavContainer.querySelectorAll('a[href]');
+          mobileLinks.forEach(link => {
+              if (link.href.split('#')[0].split('?')[0] === currentUrl) {
+                  // Remove normal classes
+                  link.classList.remove('text-gray-800', 'dark:text-gray-200');
+                  // Add active classes
+                  link.classList.add('text-teal-primary', 'dark:text-teal-primary');
+                  
+                  // If it's inside a dropdown
+                  const parentDropdownContainer = link.closest('.flex-col');
+                  if (parentDropdownContainer) {
+                      const parentDropdownBtn = parentDropdownContainer.parentElement.querySelector('button');
+                      if (parentDropdownBtn) {
+                          parentDropdownBtn.classList.remove('text-gray-800', 'dark:text-gray-200');
+                          parentDropdownBtn.classList.add('text-teal-primary', 'dark:text-teal-primary');
+                      }
+                  }
+              }
+          });
+      }
+    });
+  </script>
 </body>
 </html>
