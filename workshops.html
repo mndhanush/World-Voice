@@ -105,13 +105,6 @@
 
         <!-- Desktop Actions & Toggles -->
         <div class="hidden xl:flex items-center gap-1.5 xl:gap-3 flex-shrink-0">
-          <a href="login.html" class="border border-teal-primary text-teal-primary dark:text-white dark:border-gray-600 hover:bg-teal-primary hover:text-white dark:hover:bg-teal-primary px-4 xl:px-5 py-2 xl:py-2.5 rounded-full text-[9px] xl:text-[10px] uppercase tracking-wider font-bold transition-all duration-300">Login</a>
-          <a href="register.html" class="bg-teal-primary text-white hover:bg-orange-secondary dark:hover:bg-orange-secondary px-4 xl:px-5 py-2 xl:py-2.5 rounded-full text-[9px] xl:text-[10px] uppercase tracking-wider font-bold transition-all duration-300">
-            Register
-          </a>
-
-          <div class="h-6 w-px bg-gray-300 dark:bg-gray-700 mx-1"></div>
-
           <!-- Theme Toggle -->
           <button id="theme-toggle" class="relative w-[56px] xl:w-[64px] h-[26px] xl:h-[30px] flex items-center bg-gray-200 dark:bg-gray-700 rounded-full p-1 transition-colors duration-300 focus:outline-none border border-gray-300 dark:border-gray-600 overflow-hidden" title="Toggle Theme">
             <span class="text-[7px] xl:text-[8px] font-bold text-gray-500 absolute end-2.5 dark:opacity-0 transition-opacity duration-300 tracking-wider">LGT</span>
@@ -122,11 +115,17 @@
               <i class="fas fa-moon text-[8px] xl:text-[9px] text-teal-primary hidden dark:block"></i>
             </div>
           </button>
-          
           <!-- RTL Toggle -->
           <button id="rtl-toggle" class="text-[9px] xl:text-[10px] font-bold text-gray-500 hover:text-teal-primary transition-colors duration-300 px-2 py-1 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800" title="Toggle RTL">
             RTL
           </button>
+
+          <div class="h-6 w-px bg-gray-300 dark:bg-gray-700 mx-1"></div>
+
+          <a href="login.html" class="border border-teal-primary text-teal-primary dark:text-white dark:border-gray-600 hover:bg-teal-primary hover:text-white dark:hover:bg-teal-primary px-4 xl:px-5 py-2 xl:py-2.5 rounded-full text-[9px] xl:text-[10px] uppercase tracking-wider font-bold transition-all duration-300">Login</a>
+          <a href="register.html" class="bg-teal-primary text-white hover:bg-orange-secondary dark:hover:bg-orange-secondary px-4 xl:px-5 py-2 xl:py-2.5 rounded-full text-[9px] xl:text-[10px] uppercase tracking-wider font-bold transition-all duration-300">
+            Register
+          </a>
         </div>
 
         <!-- Mobile Menu Button & Toggles -->
@@ -300,7 +299,7 @@
           <div class="order-2 lg:order-1 relative group">
             <div class="absolute inset-0 bg-orange-secondary/10 dark:bg-orange-secondary/5 rounded-3xl transform rotate-3 transition-transform group-hover:rotate-6"></div>
             <img src="assets/workshops-culinary.jpg" class="relative rounded-3xl shadow-xl border-4 border-white dark:border-gray-800 w-full object-cover aspect-[4/3] z-10" alt="Cooking Workshop">
-            <div class="absolute -bottom-6 -right-6 bg-white dark:bg-dark-surface border border-gray-200 dark:border-gray-700 p-4 rounded-xl shadow-2xl z-20 flex items-center gap-4">
+            <div class="absolute right-0 bottom-0 md:-bottom-6 md:-right-6 bg-white dark:bg-dark-surface border border-gray-200 dark:border-gray-700 p-4 rounded-xl shadow-2xl z-20 flex items-center gap-4">
               <i class="fas fa-utensils text-2xl text-orange-secondary"></i>
               <div>
                 <p class="text-xs font-bold text-gray-500 uppercase">Live Session</p>
@@ -349,7 +348,7 @@
           <div class="relative group">
             <div class="absolute inset-0 bg-teal-primary/10 dark:bg-teal-primary/5 rounded-3xl transform -rotate-3 transition-transform group-hover:-rotate-6"></div>
             <img src="assets/workshops-art.jpg" class="relative rounded-3xl shadow-xl border-4 border-white dark:border-gray-800 w-full object-cover aspect-[4/3] z-10" alt="Art Museum">
-            <div class="absolute -top-6 -left-6 bg-white dark:bg-dark-bg border border-gray-200 dark:border-gray-700 p-4 rounded-xl shadow-2xl z-20 flex items-center gap-4">
+            <div class="absolute left-0 top-0 md:-top-6 md:-left-6 bg-white dark:bg-dark-bg border border-gray-200 dark:border-gray-700 p-4 rounded-xl shadow-2xl z-20 flex items-center gap-4">
               <i class="fas fa-palette text-2xl text-teal-primary"></i>
               <div>
                 <p class="text-xs font-bold text-gray-500 uppercase">Advanced Module</p>
@@ -464,12 +463,9 @@
         
         <!-- Column 1: Logo & Info -->
         <div>
-          <div class="flex items-center gap-3 mb-6">
-            <div class="w-10 h-10 bg-gradient-to-br from-teal-500 to-teal-700 rounded-full flex items-center justify-center text-white shadow-lg shadow-teal-primary/30">
-              <i class="fas fa-globe-americas text-lg"></i>
-            </div>
-            <h3 class="text-3xl font-bold tracking-widest uppercase text-white m-0">World<span class="text-orange-secondary">Voice</span></h3>
-          </div>
+          <a href="index.html" class="inline-block mb-6">
+            <img src="assets/logo.png" alt="WorldVoice Logo" class="h-16 xl:h-20 w-auto hover:scale-105 transition-transform duration-300 bg-white/95 p-2 rounded-xl">
+          </a>
           <p class="text-gray-400 mb-8 font-medium leading-relaxed text-sm">
             An Independent Language Immersion & Cultural Institute focused on mapping out comprehensive curriculum pathways to global fluency.
           </p>
@@ -491,7 +487,7 @@
           <h4 class="text-sm uppercase tracking-[0.2em] font-bold mb-8 text-white">Quick Links</h4>
           <ul class="flex flex-col gap-5">
             <li><a href="index.html" class="text-sm text-gray-400 hover:text-teal-primary transition-colors duration-300 font-bold uppercase tracking-wider">Home</a></li>
-            <li><a href="about.html" class="text-sm text-gray-400 hover:text-orange-secondary transition-colors duration-300 font-bold uppercase tracking-wider">About Institute</a></li>
+            <li><a href="about.html" class="text-sm text-gray-400 hover:text-teal-primary transition-colors duration-300 font-bold uppercase tracking-wider">About Institute</a></li>
             <li><a href="curriculum.html" class="text-sm text-gray-400 hover:text-teal-primary transition-colors duration-300 font-bold uppercase tracking-wider">Curriculum</a></li>
             <li><a href="instructors.html" class="text-sm text-gray-400 hover:text-orange-secondary transition-colors duration-300 font-bold uppercase tracking-wider">Instructors</a></li>
             <li><a href="faq.html" class="text-sm text-gray-400 hover:text-teal-primary transition-colors duration-300 font-bold uppercase tracking-wider">FAQ</a></li>

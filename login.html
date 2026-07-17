@@ -104,15 +104,10 @@
 </head>
 <body class="antialiased font-normal min-h-screen flex flex-col relative bg-[var(--bg-color)]">
 
-    <nav class="fixed w-full top-0 z-[100] glass-nav transition-all duration-300 shadow-sm">
-        <div class="container mx-auto px-4 md:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-20">
-                
-                <div class="flex items-center gap-2 shrink-0 w-24"></div>
-
-                <div class="flex items-center gap-2 sm:gap-3 flex-shrink-0">
-                    
-                    <button id="theme-toggle" class="relative w-[56px] xl:w-[64px] h-[26px] xl:h-[30px] flex items-center bg-gray-200 dark:bg-gray-700 rounded-full p-1 transition-colors duration-300 focus:outline-none border border-gray-300 dark:border-gray-600 overflow-hidden" title="Toggle Theme">
+    
+    <!-- Theme & RTL Toggles (Top Right) -->
+    <div class="absolute top-6 end-6 xl:top-8 xl:end-8 z-[100] flex items-center gap-2 sm:gap-3">
+        <button id="theme-toggle" class="relative w-[56px] xl:w-[64px] h-[26px] xl:h-[30px] flex items-center bg-gray-200 dark:bg-gray-700 rounded-full p-1 transition-colors duration-300 focus:outline-none border border-gray-300 dark:border-gray-600 overflow-hidden" title="Toggle Theme">
                         <span class="text-[7px] xl:text-[8px] font-bold text-gray-500 absolute end-2.5 dark:opacity-0 transition-opacity duration-300 tracking-wider">LGT</span>
                         <span class="text-[7px] xl:text-[8px] font-bold text-gray-300 absolute start-2.5 opacity-0 dark:opacity-100 transition-opacity duration-300 tracking-wider">DRK</span>
                         
@@ -121,15 +116,11 @@
                             <i class="fas fa-moon text-[8px] xl:text-[9px] text-teal-primary hidden dark:block"></i>
                         </div>
                     </button>
-                    
-                    <button id="rtl-toggle" class="text-[9px] xl:text-[10px] font-bold text-gray-500 hover:text-teal-primary transition-colors duration-300 px-3 py-1.5 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 border border-gray-300 dark:border-gray-600" title="Toggle RTL">
+        <button id="rtl-toggle" class="text-[9px] xl:text-[10px] font-bold text-gray-500 hover:text-teal-primary transition-colors duration-300 px-3 py-1.5 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 border border-gray-300 dark:border-gray-600" title="Toggle RTL">
                         RTL
                     </button>
-                </div>
+    </div>
 
-            </div>
-        </div>
-    </nav>
 
     <div class="absolute top-20 start-10 w-72 h-72 bg-teal-primary/10 rounded-full blur-3xl animate-pulse pointer-events-none z-0"></div>
     <div class="absolute bottom-20 end-10 w-96 h-96 bg-orange-secondary/10 rounded-full blur-3xl animate-pulse pointer-events-none z-0" style="animation-delay: 1.5s;"></div>
@@ -342,18 +333,6 @@
         if (localStorage.getItem('direction') === 'rtl') {
             htmlElement.setAttribute('dir', 'rtl');
         }
-
-        // --- Navbar Scroll Effect ---
-        window.addEventListener('scroll', () => {
-            const nav = document.querySelector('nav');
-            if (window.scrollY > 10) {
-                nav.classList.add('shadow-md');
-                nav.style.background = 'var(--bg-color)'; 
-            } else {
-                nav.classList.remove('shadow-md');
-                nav.style.background = 'var(--nav-bg)';
-            }
-        });
-    </script>
+</script>
 </body>
 </html>
